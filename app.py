@@ -6,6 +6,18 @@ app = Flask(__name__)
 def home():
     return render_template('home.html')
 
+@app.route('/producto')
+def producto():
+    return render_template('producto.html')
+
+@app.route('/soluciones')
+def soluciones():
+    return render_template('soluciones.html')
+
+@app.route('/equipo')
+def equipo():
+    return render_template('equipo.html')
+
 @app.route('/cookies')
 def cookies():
     return render_template('cookies.html')

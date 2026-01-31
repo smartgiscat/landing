@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soluciones | SmartGIS</title>
+    
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="icon" href="{{ url_for('static', filename='img/logo_svg.svg') }}" type="image/svg+xml">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.0.6/tsparticles.bundle.min.js"></script>
+</head>
+
+<body class="antialiased">
+    <div id="particles-js"></div>
+
+    <nav class="glass-nav fixed w-full top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <a href="{{ url_for('home') }}" class="flex items-center gap-2">
+                    <i class="fas fa-globe-americas text-2xl text-black"></i>
+                    <span class="text-xl font-bold tracking-tight">SmartGIS</span>
+                </a>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="/producto" class="text-sm font-medium text-gray-600 hover:text-black">Producto</a>
+                    <a href="/soluciones" class="text-sm font-bold text-black border-b-2 border-black">Soluciones</a>
+                    <a href="/equipo" class="text-sm font-medium text-gray-600 hover:text-black">Quiénes somos</a>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSfJO-QmNZtDW_80Z0sKrmAr8Q-kHNWfnmzqhpwDCDNnE9kDMA/viewform" class="btn-primary py-2 px-4 text-sm">Contactar</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="relative pt-32 pb-24">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-20">
+                <h2 class="text-4xl md:text-6xl font-extrabold text-gray-900 mb-6">
+                    Respuestas para cada <br>
+                    <span class="text-gradient">Sector Estratégico</span>
+                </h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                    Transformamos la complejidad de los datos geográficos en ventajas competitivas para administraciones y empresas.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8 mb-24">
+                
+                <div class="bg-white/50 backdrop-blur-sm p-10 rounded-[2.5rem] border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-500">
+                    <div class="w-14 h-14 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center mb-6">
+                        <i class="fas fa-university text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Administración Pública</h3>
+                    <p class="text-gray-600 mb-6 leading-relaxed">
+                        Optimización de servicios municipales, análisis de vulnerabilidad urbana y gestión eficiente del Catastro mediante consultas en lenguaje natural.
+                    </p>
+                    <ul class="space-y-3 text-sm text-gray-500">
+                        <li><i class="fas fa-check text-black mr-2"></i> Planificación urbanística</li>
+                        <li><i class="fas fa-check text-black mr-2"></i> Gestión de licencias</li>
+                        <li><i class="fas fa-check text-black mr-2"></i> Análisis sociodemográfico (INE)</li>
+                    </ul>
+                </div>
+
+                <div class="bg-white/50 backdrop-blur-sm p-10 rounded-[2.5rem] border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-500">
+                    <div class="w-14 h-14 bg-emerald-50 text-emerald-600 rounded-2xl flex items-center justify-center mb-6">
+                        <i class="fas fa-building text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Real Estate & Retail</h3>
+                    <p class="text-gray-600 mb-6 leading-relaxed">
+                        Identificación de las mejores ubicaciones comerciales analizando flujo de personas, competencia y precios de mercado en tiempo real.
+                    </p>
+                    <ul class="space-y-3 text-sm text-gray-500">
+                        <li><i class="fas fa-check text-black mr-2"></i> Valoración de activos</li>
+                        <li><i class="fas fa-check text-black mr-2"></i> Geomarketing avanzado</li>
+                        <li><i class="fas fa-check text-black mr-2"></i> Mapas de calor de demanda</li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <footer class="py-12 border-t border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <p class="text-gray-500 text-sm mb-4">© 2026 SmartGIS. Innovación sobre el territorio.</p>
+            <div class="flex justify-center gap-4 text-[11px] text-gray-400 uppercase tracking-widest font-semibold">
+                <a href="{{ url_for('aviso_legal') }}" class="hover:text-black">Aviso Legal</a>
+                <span>|</span>
+                <a href="{{ url_for('privacidad') }}" class="hover:text-black">Privacidad</a>
+                <span>|</span>
+                <a href="{{ url_for('cookies') }}" class="hover:text-black">Cookies</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            if (window.tsParticles) {
+                tsParticles.load("particles-js", {
+                    particles: {
+                        number: { value: 30, density: { enable: true, value_area: 800 } },
+                        color: { value: "#000000" },
+                        opacity: { value: 0.05 },
+                        size: { value: 3, random: true },
+                        line_linked: { enable: true, distance: 150, color: "#000000", opacity: 0.05, width: 1 },
+                        move: { enable: true, speed: 0.8, out_mode: "out" }
+                    },
+                    retina_detect: true
+                });
+            }
+        });
+    </script>
+</body>
+</html>
