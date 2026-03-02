@@ -77,64 +77,92 @@
     <main class="relative pt-40 pb-24 hero-bg border-b border-gray-100">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
             <h1 class="text-4xl md:text-6xl font-extrabold text-gray-900 mb-6 tracking-tight">
-                Respuestas para cada <br>
-                <span class="text-gradient">Sector Estratégico</span>
+                Tecnología que <br>
+                <span class="text-gradient">Redefine el Territorio</span>
             </h1>
             <p class="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
-                Transformamos datos geográficos masivos en decisiones estratégicas mediante inteligencia artificial conversacional.
+                Desde la generación de planos por IA hasta el análisis masivo de datos urbanos. Respuestas inteligentes para un mundo geolocalizado.
             </p>
         </div>
     </main>
 
     <section class="w-full flex flex-col md:flex-row border-b border-gray-100 compact-strip overflow-hidden">
-        <div class="md:w-1/2 h-64 md:h-auto">
-            <img src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&q=80&w=1000" 
-                 alt="Administración Pública" 
-                 class="w-full h-full object-cover">
+        <div class="md:w-1/2 h-80 md:h-auto bg-gray-50 p-10 flex items-center justify-center">
+            <img src="{{ url_for('static', filename='img/planificador.png') }}" 
+                alt="Generación de planos por IA con SmartGIS" 
+                class="max-w-full max-h-full object-contain filter grayscale-[20%]">
         </div>
-        <div class="md:w-1/2 bg-white p-8 md:p-16 flex flex-col justify-center">
-            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 text-blue-600 text-xs font-bold uppercase tracking-wider mb-4 w-fit">
-                <i class="fas fa-university"></i> Sector Público
+        <div class="md:w-1/2 bg-white p-8 md:p-20 flex flex-col justify-center">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-gray-200 text-black text-[10px] font-bold uppercase tracking-widest mb-6 w-fit">
+                <i class="fas fa-magic text-gray-400"></i> Inteligencia Artificial
             </div>
-            <h2 class="text-2xl font-bold text-gray-900 mb-4">Gobernanza basada en la evidencia</h2>
-            <p class="text-base text-gray-600 mb-6 leading-relaxed">
-                Facilitamos a los ayuntamientos la gestión del territorio. Análisis de vulnerabilidad urbana y optimización del Catastro sin complicaciones.
+            <h2 class="text-3xl font-bold text-gray-900 mb-4 tracking-tight">Planificador Inteligente</h2>
+            <p class="text-base text-gray-600 mb-8 leading-relaxed">
+                Optimización del diseño territorial mediante IA generativa. Convierte imágenes satelitales en planos profesionales de forma instantánea, facilitando la toma de decisiones en sectores B2B y B2C.
             </p>
-            <div class="grid grid-cols-2 gap-4">
-                <div>
-                    <h4 class="font-bold text-gray-900 text-sm mb-1">Urbanismo</h4>
-                    <p class="text-xs text-gray-500">Planificación inteligente.</p>
+            <div class="flex flex-wrap gap-x-8 gap-y-2 pt-6 border-t border-gray-100">
+                <div class="flex items-center gap-2 text-xs font-bold text-black uppercase tracking-wider">
+                    <i class="fas fa-bolt"></i> Eficiencia Operativa
                 </div>
-                <div>
-                    <h4 class="font-bold text-gray-900 text-sm mb-1">Sociodemografía</h4>
-                    <p class="text-xs text-gray-500">Datos INE por barrio.</p>
+                <div class="flex items-center gap-2 text-xs font-bold text-black uppercase tracking-wider">
+                    <i class="fas fa-layer-group"></i> Precisión Técnica
                 </div>
             </div>
         </div>
     </section>
 
     <section class="w-full flex flex-col md:flex-row-reverse border-b border-gray-100 compact-strip overflow-hidden">
-        <div class="md:w-1/2 h-64 md:h-auto">
-            <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=1000" 
-                 alt="Real Estate" 
-                 class="w-full h-full object-cover">
+        <div class="md:w-1/2 h-80 md:h-auto bg-gray-50 p-10 flex items-center justify-center">
+            <img src="{{ url_for('static', filename='img/real_state.png') }}" 
+                alt="Visualización de datos inmobiliarios SmartGIS" 
+                class="max-w-full max-h-full object-contain">
         </div>
-        <div class="md:w-1/2 bg-slate-50 p-8 md:p-16 flex flex-col justify-center">
-            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 text-emerald-600 text-xs font-bold uppercase tracking-wider mb-4 w-fit">
-                <i class="fas fa-chart-line"></i> Business Intelligence
+        <div class="md:w-1/2 bg-white p-8 md:p-20 flex flex-col justify-center">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-gray-200 text-black text-[10px] font-bold uppercase tracking-widest mb-6 w-fit">
+                <i class="fas fa-home text-gray-400"></i> Real Estate
             </div>
-            <h2 class="text-2xl font-bold text-gray-900 mb-4">Ubicaciones que aseguran el éxito</h2>
-            <p class="text-base text-gray-600 mb-6 leading-relaxed">
-                Identifica las mejores zonas comerciales analizando flujo de personas, competencia y precios de mercado en tiempo real.
+            <h2 class="text-3xl font-bold text-gray-900 mb-4 tracking-tight">Captación y Análisis de Activos</h2>
+            <p class="text-base text-gray-600 mb-8 leading-relaxed">
+                Visualización avanzada de datos georeferenciados para el sector inmobiliario. Nuestro visor analiza servicios, transporte y demografía del entorno para fortalecer los argumentos de captación y venta.
             </p>
-            <ul class="space-y-2 text-sm">
-                <li class="flex items-start gap-2 text-gray-700">
-                    <i class="fas fa-check text-emerald-500 mt-1"></i> Valoración de activos.
-                </li>
-                <li class="flex items-start gap-2 text-gray-700">
-                    <i class="fas fa-check text-emerald-500 mt-1"></i> Geomarketing avanzado.
-                </li>
-            </ul>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
+                <div class="p-5 border border-gray-100 rounded-sm bg-gray-50/50">
+                    <h4 class="font-bold text-gray-900 text-xs uppercase tracking-wider mb-2">Visor de Entorno</h4>
+                    <p class="text-sm text-gray-500">Análisis detallado de servicios para cierre de ventas.</p>
+                </div>
+                <div class="p-5 border border-gray-100 rounded-sm bg-gray-50/50">
+                    <h4 class="font-bold text-gray-900 text-xs uppercase tracking-wider mb-2">Lead Capture</h4>
+                    <p class="text-sm text-gray-500">Captación de datos con precisión geográfica.</p>
+                </div>
+            </div>
+            <p class="text-[10px] text-gray-400 uppercase tracking-widest font-bold">* Módulos independientes o solución integral</p>
+        </div>
+    </section>
+
+    <section class="w-full flex flex-col md:flex-row border-b border-gray-100 compact-strip overflow-hidden">
+        <div class="md:w-1/2 h-80 md:h-auto bg-gray-50 p-10 flex items-center justify-center">
+            <img src="{{ url_for('static', filename='img/producto.png') }}"  
+                alt="Plataforma SaaS SmartGIS" 
+                class="max-w-full max-h-full object-contain">
+        </div>
+        <div class="md:w-1/2 bg-white p-8 md:p-20 flex flex-col justify-center">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-gray-200 text-black text-[10px] font-bold uppercase tracking-widest mb-6 w-fit">
+                <i class="fas fa-university text-gray-400"></i> Gobierno & Smart Cities
+            </div>
+            <h2 class="text-3xl font-bold text-gray-900 mb-4 tracking-tight">Análisis Geoespacial Conversacional</h2>
+            <p class="text-base text-gray-600 mb-8 leading-relaxed">
+                Plataforma B2G diseñada para la gobernanza moderna. Ejecute análisis complejos de accesibilidad y "Ciudades de 15 minutos" mediante una interfaz de lenguaje natural intuitiva y potente.
+            </p>
+            <div class="space-y-4">
+                <div class="flex items-start gap-4">
+                    <div class="w-1.5 h-1.5 rounded-full bg-black mt-2"></div>
+                    <p class="text-sm text-gray-700"><strong class="text-black">Interfaz Natural:</strong> Consultas GIS sin necesidad de conocimientos técnicos previos.</p>
+                </div>
+                <div class="flex items-start gap-4">
+                    <div class="w-1.5 h-1.5 rounded-full bg-black mt-2"></div>
+                    <p class="text-sm text-gray-700"><strong class="text-black">Accesibilidad Urbana:</strong> Monitorización de proximidad y movilidad ciudadana.</p>
+                </div>
+            </div>
         </div>
     </section>
 
