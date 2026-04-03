@@ -14,6 +14,10 @@ def producto():
 def soluciones():
     return render_template('soluciones.html')
 
+@app.route('/programa2026')
+def programa():
+    return render_template('programa.html')
+
 @app.route('/equipo')
 def equipo():
     return render_template('equipo.html')
