@@ -1,32 +1,30 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="{{ lang }}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Soluciones | SmartGIS - Inteligencia Geoespacial</title>
+    <title>SmartGIS - {{ c.nav_solutions }}</title>
     
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
     <link rel="icon" href="{{ url_for('static', filename='img/logo_svg.svg') }}" type="image/svg+xml">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.0.6/tsparticles.bundle.min.js"></script>
 
     <style>
-        .text-gradient {
-            background: linear-gradient(to right, #000, #666);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+        .text-accent {
+            color: #0d3b8a;
         }
-        .hero-bg {
-            background-image: linear-gradient(rgba(255,255,255,0.95), rgba(255,255,255,0.9)), 
-                              url('https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?auto=format&fit=crop&q=80&w=2000');
-            background-size: cover;
-            background-position: center;
+        .bg-accent {
+            background-color: #0d3b8a;
         }
+        .border-accent {
+            border-color: #0d3b8a;
+        }
+
         .compact-strip {
             min-height: 350px;
         }
-        /* Animación para el menú móvil */
+
         #mobile-menu:not(.hidden) {
             animation: slideDown 0.3s ease-out forwards;
         }
@@ -38,12 +36,11 @@
 </head>
 
 <body class="antialiased bg-white">
-    <div id="particles-js" class="fixed inset-0 z-0 pointer-events-none"></div>
 
     <nav class="glass-nav fixed w-full top-0 z-50 bg-white/90 backdrop-blur-md border-b border-gray-100">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-16 items-center">
-                <a href="/" class="flex items-center gap-2">
+                <a href="/{{ lang }}/" class="flex items-center gap-2">
                     <i class="fas fa-globe-americas text-2xl text-black"></i>
                     <span class="text-xl font-bold tracking-tight">SmartGIS</span>
                 </a>
@@ -54,92 +51,55 @@
                     </button>
                 </div>
 
-                <div class="hidden md:flex items-center space-x-8">
-                    <a href="/producto" class="text-sm font-medium text-gray-600 hover:text-black">Producto</a>
-                    <a href="/soluciones" class="text-sm font-bold text-black border-b-2 border-black">Soluciones</a>
-                    <a href="/programa2026" class="text-sm font-medium text-gray-600 hover:text-black">Programa de Innovación</a>
-                    <a href="/equipo" class="text-sm font-medium text-gray-600 hover:text-black">Quiénes somos</a>
-                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSfJO-QmNZtDW_80Z0sKrmAr8Q-kHNWfnmzqhpwDCDNnE9kDMA/viewform" target="_blank" class="bg-black text-white hover:bg-gray-800 transition-colors rounded-xl py-2 px-4 text-sm font-bold shadow-sm">Contactar</a>
+                <div class="hidden md:flex items-center space-x-6">
+                    <a href="/{{ lang }}/producto" class="text-sm font-medium text-gray-600 hover:text-black">{{ c.nav_product }}</a>
+                    <a href="/{{ lang }}/soluciones" class="text-sm font-bold text-black border-b-2 border-black">{{ c.nav_solutions }}</a>
+                    <a href="/{{ lang }}/programa" class="text-sm font-medium text-gray-600 hover:text-black">{{ c.nav_program }}</a>
+                    <a href="/{{ lang }}/equipo" class="text-sm font-medium text-gray-600 hover:text-black">{{ c.nav_about }}</a>
+                    
+                    <div class="flex items-center gap-2 bg-gray-100 px-3 py-1 rounded-full border border-gray-200 ml-2">
+                        <a href="/es/soluciones" class="text-xs font-bold {{ 'text-blue-700' if lang == 'es' else 'text-gray-400 hover:text-gray-600' }}">ES</a>
+                        <span class="text-gray-300">|</span>
+                        <a href="/ca/soluciones" class="text-xs font-bold {{ 'text-blue-700' if lang == 'ca' else 'text-gray-400 hover:text-gray-600' }}">CA</a>
+                    </div>
+
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSfJO-QmNZtDW_80Z0sKrmAr8Q-kHNWfnmzqhpwDCDNnE9kDMA/viewform" target="_blank" class="bg-black text-white hover:bg-gray-800 transition-colors rounded-xl py-2 px-4 text-sm font-bold shadow-sm ml-2">{{ c.nav_contact }}</a>
                 </div>
             </div>
         </div>
 
         <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-gray-100 shadow-xl">
             <div class="px-4 pt-2 pb-6 space-y-4">
-                <a href="/producto" class="block text-base font-medium text-gray-600 py-2">Producto</a>
-                <a href="/soluciones" class="text-sm font-bold text-black border-b-2 border-black">Soluciones</a>
-                <a href="/programa2026" class="block text-base font-medium text-gray-600 py-2">Programa de Innovación</a>
-                <a href="/equipo" class="block text-base font-medium text-gray-600 py-2">Quiénes somos</a>
-                <hr class="border-gray-100">
-                <a href="https://docs.google.com/forms/d/e/1FAIpQLSfJO-QmNZtDW_80Z0sKrmAr8Q-kHNWfnmzqhpwDCDNnE9kDMA/viewform" target="_blank" class="block w-full text-center bg-black text-white font-bold py-3 rounded-xl">Contactar</a>
+                <a href="/{{ lang }}/producto" class="block text-base font-medium text-gray-600 py-2">{{ c.nav_product }}</a>
+                <a href="/{{ lang }}/soluciones" class="text-sm font-bold text-black border-b-2 border-black">{{ c.nav_solutions }}</a>
+                <a href="/{{ lang }}/programa" class="block text-base font-medium text-gray-600 py-2">{{ c.nav_program }}</a>
+                <a href="/{{ lang }}/equipo" class="block text-base font-medium text-gray-600 py-2">{{ c.nav_about }}</a>
+                
+                <div class="flex justify-center gap-4 py-2 border-y border-gray-100 my-2">
+                    <a href="/es/soluciones" class="text-sm font-bold {{ 'text-blue-700' if lang == 'es' else 'text-gray-400' }}">Español</a>
+                    <span class="text-gray-300">|</span>
+                    <a href="/ca/soluciones" class="text-sm font-bold {{ 'text-blue-700' if lang == 'ca' else 'text-gray-400' }}">Català</a>
+                </div>
+
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSfJO-QmNZtDW_80Z0sKrmAr8Q-kHNWfnmzqhpwDCDNnE9kDMA/viewform" target="_blank" class="block w-full text-center bg-black text-white font-bold py-3 rounded-xl">{{ c.nav_contact }}</a>
             </div>
         </div>
     </nav>
 
-    <main class="relative pt-40 pb-24 hero-bg border-b border-gray-100">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+    <main class="relative mt-16 pt-32 pb-20 bg-white z-10 overflow-hidden border-b border-gray-100">
+        <div id="topo-canvas-container" class="absolute inset-0 z-0 pointer-events-none opacity-20">
+            <canvas id="topo-canvas"></canvas>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-20">
             <h1 class="text-4xl md:text-6xl font-extrabold text-gray-900 mb-6 tracking-tight">
-                Tecnología que <br>
-                <span class="text-gradient">Redefine el Territorio</span>
+                {{ t.hero_title | safe }}
             </h1>
-            <p class="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
-                Desde la generación de planos por IA hasta el análisis masivo de datos urbanos. Respuestas inteligentes para un mundo geolocalizado.
+            <p class="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed font-medium">
+                {{ t.hero_desc }}
             </p>
         </div>
     </main>
-
-    <section class="w-full flex flex-col md:flex-row border-b border-gray-100 compact-strip overflow-hidden">
-        <div class="md:w-1/2 h-80 md:h-auto bg-gray-50 p-10 flex items-center justify-center">
-            <img src="{{ url_for('static', filename='img/planificador.png') }}" 
-                alt="Generación de planos por IA con SmartGIS" 
-                class="max-w-full max-h-full object-contain filter grayscale-[20%]">
-        </div>
-        <div class="md:w-1/2 bg-white p-8 md:p-20 flex flex-col justify-center">
-            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-gray-200 text-black text-[10px] font-bold uppercase tracking-widest mb-6 w-fit">
-                <i class="fas fa-magic text-gray-400"></i> Inteligencia Artificial
-            </div>
-            <h2 class="text-3xl font-bold text-gray-900 mb-4 tracking-tight">Planificador Inteligente</h2>
-            <p class="text-base text-gray-600 mb-8 leading-relaxed">
-                Optimización del diseño territorial mediante IA generativa. Convierte imágenes satelitales en planos profesionales de forma instantánea, facilitando la toma de decisiones en sectores B2B y B2C.
-            </p>
-            <div class="flex flex-wrap gap-x-8 gap-y-2 pt-6 border-t border-gray-100">
-                <div class="flex items-center gap-2 text-xs font-bold text-black uppercase tracking-wider">
-                    <i class="fas fa-bolt"></i> Eficiencia Operativa
-                </div>
-                <div class="flex items-center gap-2 text-xs font-bold text-black uppercase tracking-wider">
-                    <i class="fas fa-layer-group"></i> Precisión Técnica
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="w-full flex flex-col md:flex-row-reverse border-b border-gray-100 compact-strip overflow-hidden">
-        <div class="md:w-1/2 h-80 md:h-auto bg-gray-50 p-10 flex items-center justify-center">
-            <img src="{{ url_for('static', filename='img/real_state.png') }}" 
-                alt="Visualización de datos inmobiliarios SmartGIS" 
-                class="max-w-full max-h-full object-contain">
-        </div>
-        <div class="md:w-1/2 bg-white p-8 md:p-20 flex flex-col justify-center">
-            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-gray-200 text-black text-[10px] font-bold uppercase tracking-widest mb-6 w-fit">
-                <i class="fas fa-home text-gray-400"></i> Real Estate
-            </div>
-            <h2 class="text-3xl font-bold text-gray-900 mb-4 tracking-tight">Captación y Análisis de Activos</h2>
-            <p class="text-base text-gray-600 mb-8 leading-relaxed">
-                Visualización avanzada de datos georeferenciados para el sector inmobiliario. Nuestro visor analiza servicios, transporte y demografía del entorno para fortalecer los argumentos de captación y venta.
-            </p>
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
-                <div class="p-5 border border-gray-100 rounded-sm bg-gray-50/50">
-                    <h4 class="font-bold text-gray-900 text-xs uppercase tracking-wider mb-2">Visor de Entorno</h4>
-                    <p class="text-sm text-gray-500">Análisis detallado de servicios para cierre de ventas.</p>
-                </div>
-                <div class="p-5 border border-gray-100 rounded-sm bg-gray-50/50">
-                    <h4 class="font-bold text-gray-900 text-xs uppercase tracking-wider mb-2">Lead Capture</h4>
-                    <p class="text-sm text-gray-500">Captación de datos con precisión geográfica.</p>
-                </div>
-            </div>
-            <p class="text-[10px] text-gray-400 uppercase tracking-widest font-bold">* Módulos independientes o solución integral</p>
-        </div>
-    </section>
 
     <section class="w-full flex flex-col md:flex-row border-b border-gray-100 compact-strip overflow-hidden">
         <div class="md:w-1/2 h-80 md:h-auto bg-gray-50 p-10 flex items-center justify-center">
@@ -149,22 +109,75 @@
         </div>
         <div class="md:w-1/2 bg-white p-8 md:p-20 flex flex-col justify-center">
             <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-gray-200 text-black text-[10px] font-bold uppercase tracking-widest mb-6 w-fit">
-                <i class="fas fa-university text-gray-400"></i> Gobierno & Smart Cities
+                <i class="fas fa-university text-accent"></i> {{ t.sol1_badge }}
             </div>
-            <h2 class="text-3xl font-bold text-gray-900 mb-4 tracking-tight">Análisis Geoespacial Conversacional</h2>
+            <h2 class="text-3xl font-bold text-accent mb-4 tracking-tight">{{ t.sol1_title }}</h2>
             <p class="text-base text-gray-600 mb-8 leading-relaxed">
-                Plataforma B2G diseñada para la gobernanza moderna. Ejecute análisis complejos de accesibilidad y "Ciudades de 15 minutos" mediante una interfaz de lenguaje natural intuitiva y potente.
+                {{ t.sol1_desc }}
             </p>
             <div class="space-y-4">
                 <div class="flex items-start gap-4">
                     <div class="w-1.5 h-1.5 rounded-full bg-black mt-2"></div>
-                    <p class="text-sm text-gray-700"><strong class="text-black">Interfaz Natural:</strong> Consultas GIS sin necesidad de conocimientos técnicos previos.</p>
+                    <p class="text-sm text-gray-700">{{ t.sol1_feat1 | safe }}</p>
                 </div>
                 <div class="flex items-start gap-4">
                     <div class="w-1.5 h-1.5 rounded-full bg-black mt-2"></div>
-                    <p class="text-sm text-gray-700"><strong class="text-black">Accesibilidad Urbana:</strong> Monitorización de proximidad y movilidad ciudadana.</p>
+                    <p class="text-sm text-gray-700">{{ t.sol1_feat2 | safe }}</p>
                 </div>
             </div>
+        </div>
+    </section>
+
+    <section class="w-full flex flex-col md:flex-row-reverse border-b border-gray-100 compact-strip overflow-hidden">
+        <div class="md:w-1/2 h-80 md:h-auto bg-gray-50 p-10 flex items-center justify-center">
+            <img src="{{ url_for('static', filename='img/planificador.png') }}" 
+                alt="Generación de planos por IA con SmartGIS" 
+                class="max-w-full max-h-full object-contain filter grayscale-[20%]">
+        </div>
+        <div class="md:w-1/2 bg-white p-8 md:p-20 flex flex-col justify-center">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-gray-200 text-black text-[10px] font-bold uppercase tracking-widest mb-6 w-fit">
+                <i class="fas fa-magic text-accent"></i> {{ t.sol2_badge }}
+            </div>
+            <h2 class="text-3xl font-bold text-accent mb-4 tracking-tight">{{ t.sol2_title }}</h2>
+            <p class="text-base text-gray-600 mb-8 leading-relaxed">
+                {{ t.sol2_desc }}
+            </p>
+            <div class="flex flex-wrap gap-x-8 gap-y-2 pt-6 border-t border-gray-100">
+                <div class="flex items-center gap-2 text-xs font-bold text-black uppercase tracking-wider">
+                    <i class="fas fa-bolt"></i> {{ t.sol2_feat1 }}
+                </div>
+                <div class="flex items-center gap-2 text-xs font-bold text-black uppercase tracking-wider">
+                    <i class="fas fa-layer-group"></i> {{ t.sol2_feat2 }}
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="w-full flex flex-col md:flex-row border-b border-gray-100 compact-strip overflow-hidden">
+        <div class="md:w-1/2 h-80 md:h-auto bg-gray-50 p-10 flex items-center justify-center">
+            <img src="{{ url_for('static', filename='img/real_state.png') }}" 
+                alt="Visualización de datos inmobiliarios SmartGIS" 
+                class="max-w-full max-h-full object-contain">
+        </div>
+        <div class="md:w-1/2 bg-white p-8 md:p-20 flex flex-col justify-center">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-gray-200 text-black text-[10px] font-bold uppercase tracking-widest mb-6 w-fit">
+                <i class="fas fa-home text-accent"></i> {{ t.sol3_badge }}
+            </div>
+            <h2 class="text-3xl font-bold text-accent mb-4 tracking-tight">{{ t.sol3_title }}</h2>
+            <p class="text-base text-gray-600 mb-8 leading-relaxed">
+                {{ t.sol3_desc }}
+            </p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
+                <div class="p-5 border border-gray-100 rounded-sm bg-gray-50/50">
+                    <h4 class="font-bold text-gray-900 text-xs uppercase tracking-wider mb-2">{{ t.sol3_box1_title }}</h4>
+                    <p class="text-sm text-gray-500">{{ t.sol3_box1_desc }}</p>
+                </div>
+                <div class="p-5 border border-gray-100 rounded-sm bg-gray-50/50">
+                    <h4 class="font-bold text-gray-900 text-xs uppercase tracking-wider mb-2">{{ t.sol3_box2_title }}</h4>
+                    <p class="text-sm text-gray-500">{{ t.sol3_box2_desc }}</p>
+                </div>
+            </div>
+            <p class="text-[10px] text-gray-400 uppercase tracking-widest font-bold">{{ t.sol3_note }}</p>
         </div>
     </section>
 
@@ -175,20 +188,19 @@
                     <i class="fab fa-linkedin text-2xl"></i>
                 </a>
             </div>
-            <p class="text-gray-500 text-sm mb-8 font-medium">© 2026 SmartGIS. Innovación inteligente sobre el territorio.</p>
+            <p class="text-gray-500 text-sm mb-8 font-medium">© 2026 SmartGIS. {{ c.footer_slogan }}</p>
             <div class="flex flex-wrap justify-center gap-6 text-[11px] text-gray-400 uppercase tracking-widest font-bold">
-                <a href="/aviso-legal" class="hover:text-black transition-colors">Aviso Legal</a>
+                <a href="/{{ lang }}/aviso-legal" class="hover:text-black transition-colors">{{ c.footer_legal }}</a>
                 <span class="text-gray-200">|</span>
-                <a href="/privacidad" class="hover:text-black transition-colors">Privacidad</a>
+                <a href="/{{ lang }}/privacidad" class="hover:text-black transition-colors">{{ c.footer_privacy }}</a>
                 <span class="text-gray-200">|</span>
-                <a href="/cookies" class="hover:text-black transition-colors">Cookies</a>
+                <a href="/{{ lang }}/cookies" class="hover:text-black transition-colors">{{ c.footer_cookies }}</a>
             </div>
         </div>
     </footer>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Lógica Menú Móvil
             const menuBtn = document.getElementById('mobile-menu-button');
             const mobileMenu = document.getElementById('mobile-menu');
             const menuIcon = menuBtn.querySelector('i');
@@ -199,20 +211,62 @@
                 menuIcon.classList.toggle('fa-times', !isHidden);
             });
 
-            // tsParticles
-            if (window.tsParticles) {
-                tsParticles.load("particles-js", {
-                    particles: {
-                        number: { value: 20, density: { enable: true, value_area: 800 } },
-                        color: { value: "#000000" },
-                        opacity: { value: 0.04 },
-                        size: { value: 1.5 },
-                        line_linked: { enable: true, distance: 150, color: "#000000", opacity: 0.04, width: 1 },
-                        move: { enable: true, speed: 0.5, out_mode: "out" }
-                    },
-                    retina_detect: true
+            const canvas = document.getElementById('topo-canvas');
+            const ctx = canvas.getContext('2d');
+            const container = document.getElementById('topo-canvas-container');
+
+            let width, height;
+            let time = 0;
+
+            function resize() {
+                width = canvas.width = container.offsetWidth;
+                height = canvas.height = container.offsetHeight;
+            }
+            resize();
+            window.addEventListener('resize', resize);
+
+            const lines = [];
+            const numLines = 25;
+            const segments = 100;
+
+            for (let i = 0; i < numLines; i++) {
+                lines.push({
+                    yBase: height * (i / numLines),
+                    speed: 0.2 + Math.random() * 0.3,
+                    wavelength: 200 + Math.random() * 100,
+                    amplitude: 15 + Math.random() * 10
                 });
             }
+
+            function animate() {
+                requestAnimationFrame(animate);
+                ctx.clearRect(0, 0, width, height);
+                ctx.strokeStyle = '#000000';
+                ctx.lineWidth = 0.5;
+
+                time += 0.02;
+
+                lines.forEach((line, index) => {
+                    ctx.beginPath();
+                    for (let x = 0; x <= segments; x++) {
+                        const px = (x / segments) * width;
+                        
+                        const noise = Math.sin((px / line.wavelength) + (time * line.speed) + (index * 0.5));
+                        const variation = Math.cos((px / (line.wavelength * 0.5)) - (time * line.speed * 0.7));
+
+                        const py = line.yBase + (noise * variation * line.amplitude);
+
+                        if (x === 0) {
+                            ctx.moveTo(px, py);
+                        } else {
+                            ctx.lineTo(px, py);
+                        }
+                    }
+                    ctx.stroke();
+                });
+            }
+
+            animate();
         });
     </script>
 </body>
