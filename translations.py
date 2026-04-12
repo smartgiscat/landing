@@ -25,6 +25,8 @@ translations = {
             'hero_title_2': 'GovTech 2026',
             'hero_desc': 'Transforma tu administración local implementando inteligencia geoespacial avanzada para tomar decisiones estratégicas basadas en datos reales.',
             'hero_btn': 'Ver condiciones del Piloto',
+
+            'download_program': 'Descarga el programa en PDF',
             
             'why_title': '¿Por qué unirse al Programa Piloto?',
             'why_desc': 'No solo instalamos software. Durante 6 meses, trabajamos para <span class="text-black font-bold">resolver un reto territorial real</span> en vuestra ciudad usando nuestra mejor tecnología.',
@@ -34,10 +36,10 @@ translations = {
             
             'card_2_title': 'Caso de Uso Específico',
             'card_2_desc': 'Desarrollamos una solución a medida para un problema crítico de vuestra agenda. Transformamos datos brutos en una herramienta de gestión operativa.',
-            'card_2_examples': '"Detectar zonas de estrés hídrico", "Mapas de riesgo de incendio", "Optimización de rutas de recogida".',
+            'card_2_examples': '"Detección de islas de calor", "Zonas de riesgo de incendio", "Distribución del mobiliario urbano".',
             
-            'card_3_title': 'Resultados en 6 Meses',
-            'card_3_desc': 'Sin procesos de licitación infinitos ni despliegues complejos. El programa está diseñado para que el Ayuntamiento obtenga <strong>indicadores accionables</strong> y planos técnicos desde el primer mes.',
+            'card_3_title': 'Resultados desde el primer día',
+            'card_3_desc': 'Sin procesos de licitación infinitos ni despliegues complejos. El programa está diseñado para que el Ayuntamiento obtenga <strong>indicadores útiles</strong> y planos desde el primer día.',
             
             'cta_limit': 'Plazas muy limitadas',
             'cta_h2': 'Solo <span class="text-accent">3 Ayuntamientos</span> formarán parte de la edición 2026.',
@@ -55,7 +57,8 @@ translations = {
             'normativa_ens': 'ENS (alto)',
 
             'cta_btn_short': 'Inscribir mi Ayuntamiento',
-            'form_title': 'Candidatura piloto 2026',
+            'form_title': 'Presenta tu candidatura para los pilotos 2026',
+            'form_subtitle': 'Rellena tus datos y nuestro equipo se pondrá en contacto contigo.',
             'form_city': 'Nombre de la ciudad',
             'form_name': 'Persona de referencia',
             'form_position': 'Cargo',
@@ -141,8 +144,8 @@ translations = {
             'hero_title_1': 'Innovación sobre el <br> Territorio',
             'hero_desc': 'Inteligencia Geoespacial Avanzada para la toma de decisiones. Analiza datos complejos mediante lenguaje natural y visualización GIS de última generación.',
             'hero_btn_demo': 'Solicita una Demo',
-            'hero_btn_projects': 'Ver Proyectos y Alianzas',
-            'projects_subtitle': 'Hitos Recientes',
+            'hero_btn_projects': 'Ver novedades',
+            'projects_subtitle': 'Novedades',
             'project1_title': 'Proyecto Piloto Local·IA',
             'project1_desc': 'Presentación de nuestro producto en las jornadas de la <strong>Diputación de Barcelona</strong> junto al <strong>Ayuntamiento de Gavà</strong>.',
             'project2_title': 'Máster Geoinformación UAB',
@@ -150,7 +153,7 @@ translations = {
             'trust_title': 'Confían en nosotros',
             'infra_title': 'Partner Tecnológico e Infraestructura',
             'infra_cloud': 'Cloud de Confianza',
-            'ens_text': 'CUMPLIMOS CON EL ENS'
+            'ens_text': 'CUMPLIMOS CON EL ENS NIVEL ALTO'
         },
     },
     
@@ -164,7 +167,7 @@ translations = {
             'nav_program': 'Programa d\'Innovació',
             'nav_about': 'Qui som',
             'nav_contact': 'Contactar',
-            'footer_slogan': 'Innovació intel·ligent sobre el territori.',
+            'footer_slogan': 'Innovació sobre el territori.',
             'footer_legal': 'Avís Legal',
             'footer_privacy': 'Privacitat',
             'footer_cookies': 'Galetes'
@@ -178,6 +181,8 @@ translations = {
             'hero_title_2': 'GovTech 2026',
             'hero_desc': 'Transforma la teva administració local implementant intel·ligència geoespacial avançada per prendre decisions estratègiques basades en dades reals.',
             'hero_btn': 'Veure condicions del Pilot',
+
+            'download_program': 'Descarrega el PDF del programa',
             
             'why_title': 'Per què unir-se al Programa Pilot?',
             'why_desc': 'No només instal·lem programari. Durant 6 mesos, treballem per <span class="text-black font-bold">resoldre un repte territorial real</span> de la vostre ciutat utilitzant la nostre millor tecnologia.',
@@ -187,10 +192,10 @@ translations = {
             
             'card_2_title': 'Cas d\'Ús Específic',
             'card_2_desc': 'Desenvolupem una solució a mida per a un problema crític de la vostra agenda. Transformem dades brutes en una eina de gestió operativa.',
-            'card_2_examples': '"Detectar zones d\'estrès hídric", "Mapes de risc d\'incendi", "Optimització de rutes de recollida".',
+            'card_2_examples': '"Detectecció d\'illes de calor", "Zones de risc d\'incendi", "Distribució de mobiliari urbà".',
             
-            'card_3_title': 'Resultats en 6 Mesos',
-            'card_3_desc': 'Sense processos de licitació infinits ni desplegaments complexos. El programa està dissenyat perquè l\'Ajuntament obtingui <strong>indicadors accionables</strong> i plànols tècnics des del primer mes.',
+            'card_3_title': 'Resultats des del primer dia',
+            'card_3_desc': 'Sense processos de licitació infinits ni desplegaments complexos. El programa està dissenyat perquè l\'Ajuntament obtingui <strong>indicadors útils</strong> i plànols des del primer dia.',
             
             'cta_limit': 'Places molt limitades',
             'cta_h2': 'Només <span class="text-accent">3 Ajuntaments</span> formaran part de l\'edició 2026.',
@@ -208,7 +213,8 @@ translations = {
             'normativa_ens': 'ENS (alt)',
 
             'cta_btn_short': 'Inscriure el meu Ajuntament',
-            'form_title': 'Candidatura pilot 2026',
+            'form_title': 'Presenta la teva candidatura pels pilots 2026',
+            'form_subtitle': 'Omple les dades i el nostre equip es posarà en contacte amb tu.',
             'form_city': 'Nom de la ciutat',
             'form_name': 'Persona de referència',
             'form_position': 'Càrrec',
@@ -294,8 +300,8 @@ translations = {
             'hero_title_1': 'Innovació sobre el <br> Territori',
             'hero_desc': 'Intel·ligència Geoespacial Avançada per a la presa de decisions. Analitza dades complexes mitjançant llenguatge natural i visualització GIS d\'última generació.',
             'hero_btn_demo': 'Sol·licita una Demo',
-            'hero_btn_projects': 'Veure Projectes i Aliances',
-            'projects_subtitle': 'Fites Recents',
+            'hero_btn_projects': 'Veure novetats',
+            'projects_subtitle': 'Novetats',
             'project1_title': 'Projecte Pilot Local·IA',
             'project1_desc': 'Presentació del nostre producte a les jornades de la <strong>Diputació de Barcelona</strong> juntament amb l\'<strong>Ajuntament de Gavà</strong>.',
             'project2_title': 'Màster Geoinformació UAB',
@@ -303,7 +309,7 @@ translations = {
             'trust_title': 'Confien en nosaltres',
             'infra_title': 'Partner Tecnològic i Infraestructura',
             'infra_cloud': 'Cloud de Confiança',
-            'ens_text': 'COMPLIM AMB L\'ENS'
+            'ens_text': 'COMPLIM AMB L\'ENS NIVELL ALT'
         },
 
     }

@@ -22,7 +22,6 @@ body {
 .glass-nav {
     background: rgba(255, 255, 255, 0.8);
     backdrop-filter: blur(10px);
-    border-bottom: 1px solid #e5e7eb;
     z-index: 50;
 }
 
