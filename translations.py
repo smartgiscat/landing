@@ -51,6 +51,10 @@ translations = {
             'inv_item_4': 'Seguimiento y soporte técnico continuo',
             'inv_total_label': 'Inversión total del Piloto',
 
+            'flash_dies':'Días',
+            'flash_condiciones':'Condiciones válidas durante',
+            'flash_inscripcion':'Inscripción anticipada',
+
             'normativa_title': 'Infraestructura y Normativa Garantizada',
             'normativa_ens': 'ENS (alto)',
 
@@ -204,6 +208,10 @@ translations = {
             'inv_item_3': 'Desplegament i allotjament dedicat',
             'inv_item_4': 'Seguiment i suport tècnic continu',
             'inv_total_label': 'Inversió total del Pilot',
+
+            'flash_dies':'Dies',
+            'flash_condiciones':'Condicions vàlides durant',
+            'flash_inscripcion':'Inscripció anticipada',
 
             'normativa_title': 'Infraestructura i Normativa Garantitzada',
             'normativa_ens': 'ENS (alt)',

@@ -272,7 +272,7 @@
     </section>
 
     <section class="py-24 bg-slate-50 relative z-10 border-b border-gray-100">
-        <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-12">
                 <h2 class="text-3xl font-extrabold text-gray-900">{{ t.inv_title }}</h2>
             </div>
@@ -309,11 +309,45 @@
                     </li>
                 </ul>
 
-                <div class="bg-slate-50 text-gray-900 rounded-xl p-6 flex flex-col sm:flex-row justify-between items-center gap-4 border border-gray-200">
-                    <span class="text-sm font-bold tracking-widest uppercase text-gray-500">{{ t.inv_total_label }}</span>
-                    <span class="text-3xl font-extrabold">12.500 € + IVA</span>
+                <div class="bg-slate-50 text-gray-900 rounded-xl p-6 flex flex-col md:flex-row justify-between items-center gap-6 border border-blue-100 relative overflow-hidden shadow-sm">
+                    <div class="absolute top-0 right-0 bg-blue-100 text-[#0d3b8a] text-[10px] font-bold px-3 py-1 rounded-bl-lg uppercase tracking-wider">
+                        {{t.flash_inscripcion}}
+                    </div>
+                    
+                    <div class="flex flex-col w-full md:w-auto text-center md:text-left mt-2 md:mt-0">
+                        <span class="text-sm font-bold tracking-widest uppercase text-gray-500">{{ t.inv_total_label }}</span>
+                        <div class="flex flex-col sm:flex-row items-center gap-3 mt-1">
+                            <span class="text-xl line-through text-gray-400 font-medium">12.500 €</span>
+                            <span class="text-3xl font-extrabold text-[#0d3b8a]">11.500 € <span class="text-lg font-bold text-gray-500">+ IVA</span></span>
+                        </div>
+                    </div>
+
+                    <div id="countdown-container" class="flex flex-col items-center bg-white p-3 rounded-xl border border-gray-100 w-full md:w-auto z-10 shadow-sm">
+                        <span class="text-[10px] font-semibold text-gray-500 uppercase tracking-widest mb-2">{{t.flash_condiciones}}:</span>
+                        <div class="flex gap-2 text-center">
+                            <div class="flex flex-col">
+                                <span id="days" class="text-lg font-bold text-gray-700 bg-slate-50 rounded px-2 py-1 min-w-[2.5rem]">10</span>
+                                <span class="text-[9px] text-gray-400 mt-1 uppercase font-semibold">{{t.flash_dies}}</span>
+                            </div>
+                            <span class="text-lg font-medium text-gray-300 mt-1">:</span>
+                            <div class="flex flex-col">
+                                <span id="hours" class="text-lg font-bold text-gray-700 bg-slate-50 rounded px-2 py-1 min-w-[2.5rem]">00</span>
+                                <span class="text-[9px] text-gray-400 mt-1 uppercase font-semibold">Hrs</span>
+                            </div>
+                            <span class="text-lg font-medium text-gray-300 mt-1">:</span>
+                            <div class="flex flex-col">
+                                <span id="minutes" class="text-lg font-bold text-gray-700 bg-slate-50 rounded px-2 py-1 min-w-[2.5rem]">00</span>
+                                <span class="text-[9px] text-gray-400 mt-1 uppercase font-semibold">Min</span>
+                            </div>
+                            <span class="text-lg font-medium text-gray-300 mt-1">:</span>
+                            <div class="flex flex-col">
+                                <span id="seconds" class="text-lg font-bold text-[#0d3b8a] bg-blue-50 rounded px-2 py-1 min-w-[2.5rem]">00</span>
+                                <span class="text-[9px] text-[#0d3b8a] mt-1 uppercase font-semibold">Seg</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
+                </div>
         </div>
     </section>
 
@@ -405,6 +439,53 @@
                     retina_detect: true
                 });
             }
+
+            // Lógica del Contador de Inscripción Anticipada
+            const initCountdown = () => {
+                const now = new Date();
+                
+                // Calculamos las 24:00 h del día de hoy (inicio del día siguiente a las 00:00:00)
+                const midnightTonight = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1, 0, 0, 0);
+                
+                // Añadimos 10 días a esa medianoche
+                const targetDate = new Date(midnightTonight.getTime() + (10 * 24 * 60 * 60 * 1000));
+
+                function update() {
+                    const currentTime = new Date();
+                    const difference = targetDate - currentTime;
+
+                    if (difference <= 0) {
+                        // Qué mostrar cuando el tiempo acaba
+                        const container = document.getElementById('countdown-container');
+                        if(container) {
+                            container.innerHTML = "<span class='text-sm font-semibold text-gray-500 px-4 py-2 uppercase'>Periodo anticipado finalizado</span>";
+                        }
+                        return;
+                    }
+
+                    const d = Math.floor(difference / (1000 * 60 * 60 * 24));
+                    const h = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                    const m = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+                    const s = Math.floor((difference % (1000 * 60)) / 1000);
+
+                    const elDays = document.getElementById('days');
+                    const elHours = document.getElementById('hours');
+                    const elMinutes = document.getElementById('minutes');
+                    const elSeconds = document.getElementById('seconds');
+
+                    if(elDays) elDays.innerText = d.toString().padStart(2, '0');
+                    if(elHours) elHours.innerText = h.toString().padStart(2, '0');
+                    if(elMinutes) elMinutes.innerText = m.toString().padStart(2, '0');
+                    if(elSeconds) elSeconds.innerText = s.toString().padStart(2, '0');
+                }
+
+                // Ejecutar inmediatamente y luego cada segundo
+                update();
+                setInterval(update, 1000);
+            };
+
+            // Iniciar el contador
+            initCountdown();
         });
     </script>
 </body>
