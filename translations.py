@@ -11,7 +11,7 @@ translations = {
             'nav_program': 'Programa de Innovación',
             'nav_about': 'Quiénes somos',
             'nav_contact': 'Contactar',
-            'footer_slogan': 'Innovación inteligente sobre el territorio.',
+            'footer_slogan': 'Innovación sobre el territorio.',
             'footer_legal': 'Aviso Legal',
             'footer_privacy': 'Privacidad',
             'footer_cookies': 'Cookies'
