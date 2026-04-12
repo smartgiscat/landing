@@ -27,7 +27,7 @@ translations = {
             'hero_btn': 'Ver condiciones del Piloto',
             
             'why_title': '¿Por qué unirse al Programa Piloto?',
-            'why_desc': 'No solo instalamos software. Durante 6 meses, trabajamos codo con codo con vuestra administración para <span class="text-black font-bold">resolver un reto territorial real</span> usando tecnología que hasta ayer parecía ciencia ficción.',
+            'why_desc': 'No solo instalamos software. Durante 6 meses, trabajamos para <span class="text-black font-bold">resolver un reto territorial real</span> en vuestra ciudad usando nuestra mejor tecnología.',
             
             'card_1_title': 'Tecnología de Vanguardia',
             'card_1_desc': 'Acceso total a la plataforma <strong>SmartGIS</strong>: Realiza análisis territoriales complejos y genera planos urbanísticos simplemente <strong>hablando con la IA</strong>.',
@@ -41,7 +41,7 @@ translations = {
             
             'cta_limit': 'Plazas muy limitadas',
             'cta_h2': 'Solo <span class="text-accent">3 Ayuntamientos</span> formarán parte de la edición 2026.',
-            'cta_p': 'No dejes que tu municipio se quede atrás. Presenta tu candidatura antes del <strong>31 de mayo de 2026</strong>.',
+            'cta_p': 'No dejes que tu municipio se quede atrás. Presenta tu candidatura antes del <strong>15 de mayo de 2026</strong>.',
             'cta_btn': 'Inscribir a mi Ayuntamiento Ahora',
             
             'inv_title': 'Transparencia Total: La Inversión',
@@ -49,7 +49,20 @@ translations = {
             'inv_item_2': 'Licencia plataforma SmartGIS (6 meses)',
             'inv_item_3': 'Despliegue y hosting dedicado',
             'inv_item_4': 'Seguimiento y soporte técnico continuo',
-            'inv_total_label': 'Inversión Total del Piloto'
+            'inv_total_label': 'Inversión Total del Piloto',
+
+            'normativa_title': 'Infraestructura y Normativa Garantizada',
+            'normativa_ens': 'ENS (alto)',
+
+            'cta_btn_short': 'Inscribir mi Ayuntamiento',
+            'form_title': 'Candidatura piloto 2026',
+            'form_city': 'Nombre de la ciudad',
+            'form_name': 'Persona de referencia',
+            'form_position': 'Cargo',
+            'form_email': 'Correo de contacto',
+            'form_phone': 'Número de teléfono',
+            'form_obs': 'Observaciones / dudas',
+            'form_submit': 'Enviar solicitud'
         },
         
         # ==========================================
@@ -167,7 +180,7 @@ translations = {
             'hero_btn': 'Veure condicions del Pilot',
             
             'why_title': 'Per què unir-se al Programa Pilot?',
-            'why_desc': 'No només instal·lem programari. Durant 6 mesos, treballem colze a colze amb la vostra administració per <span class="text-black font-bold">resoldre un repte territorial real</span> usant tecnologia que fins ahir semblava ciència-ficció.',
+            'why_desc': 'No només instal·lem programari. Durant 6 mesos, treballem per <span class="text-black font-bold">resoldre un repte territorial real</span> de la vostre ciutat utilitzant la nostre millor tecnologia.',
             
             'card_1_title': 'Tecnologia de Vanguardia',
             'card_1_desc': 'Accés total a la plataforma <strong>SmartGIS</strong>: Realitza anàlisis territorials complexos i genera plànols urbanístics simplement <strong>parlant amb la IA</strong>.',
@@ -181,7 +194,7 @@ translations = {
             
             'cta_limit': 'Places molt limitades',
             'cta_h2': 'Només <span class="text-accent">3 Ajuntaments</span> formaran part de l\'edició 2026.',
-            'cta_p': 'No deixis que el teu municipi es quedi enrere. Presenta la teva candidatura abans del <strong>31 de maig de 2026</strong>.',
+            'cta_p': 'No deixis que el teu municipi es quedi enrere. Presenta la teva candidatura abans del <strong>15 de maig de 2026</strong>.',
             'cta_btn': 'Inscriure el meu Ajuntament Ara',
             
             'inv_title': 'Transparència Total: La Inversió',
@@ -189,7 +202,20 @@ translations = {
             'inv_item_2': 'Llicència plataforma SmartGIS (6 mesos)',
             'inv_item_3': 'Desplegament i allotjament dedicat',
             'inv_item_4': 'Seguiment i suport tècnic continu',
-            'inv_total_label': 'Inversió Total del Pilot'
+            'inv_total_label': 'Inversió Total del Pilot',
+
+            'normativa_title': 'Infraestructura i Normativa Garantitzada',
+            'normativa_ens': 'ENS (alt)',
+
+            'cta_btn_short': 'Inscriure el meu Ajuntament',
+            'form_title': 'Candidatura pilot 2026',
+            'form_city': 'Nom de la ciutat',
+            'form_name': 'Persona de referència',
+            'form_position': 'Càrrec',
+            'form_email': 'Correu de contacte',
+            'form_phone': 'Número de telèfon',
+            'form_obs': 'Observacions / dubtes',
+            'form_submit': 'Enviar sol·licitud'
         },
         
         # ==========================================
