@@ -31,27 +31,25 @@ translations = {
             'why_title': '¿Por qué unirse al Programa Piloto?',
             'why_desc': 'No solo instalamos software. Durante 6 meses, trabajamos para <span class="text-black font-bold">resolver un reto territorial real</span> en vuestra ciudad usando nuestra mejor tecnología.',
             
-            'card_1_title': 'Tecnología de Vanguardia',
+            'card_1_title': 'Plataforma SmartGIS',
             'card_1_desc': 'Acceso total a la plataforma <strong>SmartGIS</strong>: Realiza análisis territoriales complejos y genera planos urbanísticos simplemente <strong>hablando con la IA</strong>.',
             
-            'card_2_title': 'Caso de Uso Específico',
+            'card_2_title': 'Caso de uso específico',
             'card_2_desc': 'Desarrollamos una solución a medida para un problema crítico de vuestra agenda. Transformamos datos brutos en una herramienta de gestión operativa.',
             'card_2_examples': '"Detección de islas de calor", "Zonas de riesgo de incendio", "Distribución del mobiliario urbano".',
             
             'card_3_title': 'Resultados desde el primer día',
             'card_3_desc': 'Sin procesos de licitación infinitos ni despliegues complejos. El programa está diseñado para que el Ayuntamiento obtenga <strong>indicadores útiles</strong> y planos desde el primer día.',
             
-            'cta_limit': 'Plazas muy limitadas',
-            'cta_h2': 'Solo <span class="text-accent">3 Ayuntamientos</span> formarán parte de la edición 2026.',
-            'cta_p': 'No dejes que tu municipio se quede atrás. Presenta tu candidatura antes del <strong>15 de mayo de 2026</strong>.',
-            'cta_btn': 'Inscribir a mi Ayuntamiento Ahora',
-            
-            'inv_title': 'Transparencia Total: La Inversión',
+            'limit_title': 'Convocatoria limitada',
+            'limit_desc': 'Para garantizar una correcta implantación y ofrecer soporte personalizado, esta edición del programa está limitada a <span class="font-bold text-gray-900">solo 3 ayuntamientos en toda Cataluña</span>.',
+
+            'inv_title': 'Transparencia total: La inversión',
             'inv_item_1': 'Desarrollo del caso de uso estratégico',
             'inv_item_2': 'Licencia plataforma SmartGIS (6 meses)',
             'inv_item_3': 'Despliegue y hosting dedicado',
             'inv_item_4': 'Seguimiento y soporte técnico continuo',
-            'inv_total_label': 'Inversión Total del Piloto',
+            'inv_total_label': 'Inversión total del Piloto',
 
             'normativa_title': 'Infraestructura y Normativa Garantizada',
             'normativa_ens': 'ENS (alto)',
@@ -187,27 +185,25 @@ translations = {
             'why_title': 'Per què unir-se al Programa Pilot?',
             'why_desc': 'No només instal·lem programari. Durant 6 mesos, treballem per <span class="text-black font-bold">resoldre un repte territorial real</span> de la vostre ciutat utilitzant la nostre millor tecnologia.',
             
-            'card_1_title': 'Tecnologia de Vanguardia',
+            'card_1_title': 'Plataforma SmartGIS',
             'card_1_desc': 'Accés total a la plataforma <strong>SmartGIS</strong>: Realitza anàlisis territorials complexos i genera plànols urbanístics simplement <strong>parlant amb la IA</strong>.',
             
-            'card_2_title': 'Cas d\'Ús Específic',
+            'card_2_title': 'Cas d\'ús específic',
             'card_2_desc': 'Desenvolupem una solució a mida per a un problema crític de la vostra agenda. Transformem dades brutes en una eina de gestió operativa.',
             'card_2_examples': '"Detectecció d\'illes de calor", "Zones de risc d\'incendi", "Distribució de mobiliari urbà".',
             
             'card_3_title': 'Resultats des del primer dia',
             'card_3_desc': 'Sense processos de licitació infinits ni desplegaments complexos. El programa està dissenyat perquè l\'Ajuntament obtingui <strong>indicadors útils</strong> i plànols des del primer dia.',
             
-            'cta_limit': 'Places molt limitades',
-            'cta_h2': 'Només <span class="text-accent">3 Ajuntaments</span> formaran part de l\'edició 2026.',
-            'cta_p': 'No deixis que el teu municipi es quedi enrere. Presenta la teva candidatura abans del <strong>15 de maig de 2026</strong>.',
-            'cta_btn': 'Inscriure el meu Ajuntament Ara',
+            'limit_title': 'Convocatòria limitada',
+            'limit_desc': 'Per garantir una correcta implantació i oferir suport personalitzat, aquesta edició del programa està limitada a <span class="font-bold text-gray-900">només 3 ajuntaments a tota Catalunya</span>.',
             
-            'inv_title': 'Transparència Total: La Inversió',
+            'inv_title': 'Transparència total: La inversió',
             'inv_item_1': 'Desenvolupament del cas d\'ús estratègic',
             'inv_item_2': 'Llicència plataforma SmartGIS (6 mesos)',
             'inv_item_3': 'Desplegament i allotjament dedicat',
             'inv_item_4': 'Seguiment i suport tècnic continu',
-            'inv_total_label': 'Inversió Total del Pilot',
+            'inv_total_label': 'Inversió total del Pilot',
 
             'normativa_title': 'Infraestructura i Normativa Garantitzada',
             'normativa_ens': 'ENS (alt)',
