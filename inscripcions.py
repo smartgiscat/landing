@@ -12,6 +12,10 @@ def send_inscription_emails(mail, data, texts):
     """
     # El remitente será el correo configurado en tu .env
     sender = os.getenv('MAIL_USERNAME')
+
+    security_mail = os.getenv('SECURITY_MAIL')
+
+    security_mail_2 = os.getenv('SECURITY_MAIL_2')
     
     if not sender:
         print("ERROR: MAIL_USERNAME no está definido en las variables de entorno.")
@@ -39,7 +43,7 @@ def send_inscription_emails(mail, data, texts):
         admin_msg = Message(
             subject=admin_subject,
             sender=sender,
-            recipients=[sender], # Te lo envías a ti mismo o al correo de info/ventas
+            recipients=[sender, security_mail, security_mail_2], # Te lo envías a ti mismo o al correo de info/ventas
             body=admin_body
         )
 

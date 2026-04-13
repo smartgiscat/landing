@@ -309,9 +309,14 @@
                     </li>
                 </ul>
 
-                <div class="bg-slate-50 text-gray-900 rounded-xl p-6 flex flex-col md:flex-row justify-between items-center gap-6 border border-blue-100 relative overflow-hidden shadow-sm">
+                <div id="precio-normal" class="hidden bg-slate-50 text-gray-900 rounded-xl p-6 flex flex-col sm:flex-row justify-between items-center gap-4 border border-gray-200">
+                    <span class="text-sm font-bold tracking-widest uppercase text-gray-500">{{ t.inv_total_label }}</span>
+                    <span class="text-3xl font-extrabold">12.500 € + IVA</span>
+                </div>
+
+                <div id="precio-oferta" class="bg-slate-50 text-gray-900 rounded-xl p-6 flex flex-col md:flex-row justify-between items-center gap-6 border border-blue-100 relative overflow-hidden shadow-sm">
                     <div class="absolute top-0 right-0 bg-blue-100 text-[#0d3b8a] text-[10px] font-bold px-3 py-1 rounded-bl-lg uppercase tracking-wider">
-                        {{t.flash_inscripcion}}
+                        Inscripción Anticipada
                     </div>
                     
                     <div class="flex flex-col w-full md:w-auto text-center md:text-left mt-2 md:mt-0">
@@ -323,25 +328,25 @@
                     </div>
 
                     <div id="countdown-container" class="flex flex-col items-center bg-white p-3 rounded-xl border border-gray-100 w-full md:w-auto z-10 shadow-sm">
-                        <span class="text-[10px] font-semibold text-gray-500 uppercase tracking-widest mb-2">{{t.flash_condiciones}}:</span>
+                        <span class="text-[10px] font-semibold text-gray-500 uppercase tracking-widest mb-2">Condiciones válidas durante:</span>
                         <div class="flex gap-2 text-center">
                             <div class="flex flex-col">
-                                <span id="days" class="text-lg font-bold text-gray-700 bg-slate-50 rounded px-2 py-1 min-w-[2.5rem]">10</span>
-                                <span class="text-[9px] text-gray-400 mt-1 uppercase font-semibold">{{t.flash_dies}}</span>
+                                <span id="days" class="text-lg font-bold text-gray-700 bg-slate-50 rounded px-2 py-1 min-w-[2.5rem]">-</span>
+                                <span class="text-[9px] text-gray-400 mt-1 uppercase font-semibold">Días</span>
                             </div>
                             <span class="text-lg font-medium text-gray-300 mt-1">:</span>
                             <div class="flex flex-col">
-                                <span id="hours" class="text-lg font-bold text-gray-700 bg-slate-50 rounded px-2 py-1 min-w-[2.5rem]">00</span>
+                                <span id="hours" class="text-lg font-bold text-gray-700 bg-slate-50 rounded px-2 py-1 min-w-[2.5rem]">-</span>
                                 <span class="text-[9px] text-gray-400 mt-1 uppercase font-semibold">Hrs</span>
                             </div>
                             <span class="text-lg font-medium text-gray-300 mt-1">:</span>
                             <div class="flex flex-col">
-                                <span id="minutes" class="text-lg font-bold text-gray-700 bg-slate-50 rounded px-2 py-1 min-w-[2.5rem]">00</span>
+                                <span id="minutes" class="text-lg font-bold text-gray-700 bg-slate-50 rounded px-2 py-1 min-w-[2.5rem]">-</span>
                                 <span class="text-[9px] text-gray-400 mt-1 uppercase font-semibold">Min</span>
                             </div>
                             <span class="text-lg font-medium text-gray-300 mt-1">:</span>
                             <div class="flex flex-col">
-                                <span id="seconds" class="text-lg font-bold text-[#0d3b8a] bg-blue-50 rounded px-2 py-1 min-w-[2.5rem]">00</span>
+                                <span id="seconds" class="text-lg font-bold text-[#0d3b8a] bg-blue-50 rounded px-2 py-1 min-w-[2.5rem]">-</span>
                                 <span class="text-[9px] text-[#0d3b8a] mt-1 uppercase font-semibold">Seg</span>
                             </div>
                         </div>
@@ -440,28 +445,32 @@
                 });
             }
 
-            // Lógica del Contador de Inscripción Anticipada
+            // Lógica del Contador con Fecha Límite Fija
             const initCountdown = () => {
-                const now = new Date();
-                
-                // Calculamos las 24:00 h del día de hoy (inicio del día siguiente a las 00:00:00)
-                const midnightTonight = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1, 0, 0, 0);
-                
-                // Añadimos 10 días a esa medianoche
-                const targetDate = new Date(midnightTonight.getTime() + (10 * 24 * 60 * 60 * 1000));
+                // FECHA DE FIN DE OFERTA: 24 de mayo de 2026 a las 15:00h (hora España)
+                const targetDate = new Date('2026-04-24T15:00:00+02:00');
+                let timerId;
 
                 function update() {
                     const currentTime = new Date();
                     const difference = targetDate - currentTime;
+                    
+                    const sectionOferta = document.getElementById('precio-oferta');
+                    const sectionNormal = document.getElementById('precio-normal');
 
                     if (difference <= 0) {
-                        // Qué mostrar cuando el tiempo acaba
-                        const container = document.getElementById('countdown-container');
-                        if(container) {
-                            container.innerHTML = "<span class='text-sm font-semibold text-gray-500 px-4 py-2 uppercase'>Periodo anticipado finalizado</span>";
-                        }
+                        // El tiempo se ha acabado: ocultamos la oferta y mostramos el precio normal
+                        if (sectionOferta) sectionOferta.classList.add('hidden');
+                        if (sectionNormal) sectionNormal.classList.remove('hidden');
+                        
+                        // Detenemos el contador para no consumir recursos
+                        if (timerId) clearInterval(timerId);
                         return;
                     }
+
+                    // Asegurarnos de que el modo oferta es el que se ve mientras haya tiempo
+                    if (sectionOferta) sectionOferta.classList.remove('hidden');
+                    if (sectionNormal) sectionNormal.classList.add('hidden');
 
                     const d = Math.floor(difference / (1000 * 60 * 60 * 24));
                     const h = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
@@ -479,9 +488,13 @@
                     if(elSeconds) elSeconds.innerText = s.toString().padStart(2, '0');
                 }
 
-                // Ejecutar inmediatamente y luego cada segundo
+                // Ejecutamos una primera vez de inmediato para no ver un "flash" incorrecto
                 update();
-                setInterval(update, 1000);
+                
+                // Solo iniciamos el intervalo si aún no hemos llegado a la fecha límite
+                if (targetDate - new Date() > 0) {
+                    timerId = setInterval(update, 1000);
+                }
             };
 
             // Iniciar el contador
