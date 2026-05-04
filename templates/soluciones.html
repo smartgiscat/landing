@@ -21,15 +21,9 @@
     </script>
 
     <style>
-        .text-accent {
-            color: #0d3b8a;
-        }
-        .bg-accent {
-            background-color: #0d3b8a;
-        }
-        .border-accent {
-            border-color: #0d3b8a;
-        }
+        .text-accent { color: #0d3b8a; }
+        .bg-accent { background-color: #0d3b8a; }
+        .border-accent { border-color: #0d3b8a; }
 
         .compact-strip {
             min-height: 350px;
@@ -41,6 +35,37 @@
         @keyframes slideDown {
             from { opacity: 0; transform: translateY(-10px); }
             to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .subsidy-banner {
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+        }
+
+        .mobile-mockup:nth-child(2) {
+            transform: translateY(15px);
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        section[id] {
+            scroll-margin-top: 5rem;
+        }
+
+        /* CLASES PARA LAS TARJETAS LIMPIAS Y ELEGANTES */
+        .card-number {
+            font-size: 6rem;
+            line-height: 1;
+            font-weight: 900;
+            color: transparent;
+            -webkit-text-stroke: 2px #0d3b8a;
+            transition: all 0.3s ease;
+        }
+        
+        .step-card:hover .card-number {
+            transform: scale(1.05) translateY(-5px);
+            -webkit-text-stroke: 3px #0d3b8a;
         }
     </style>
 </head>
@@ -62,15 +87,15 @@
                 </div>
 
                 <div class="hidden md:flex items-center space-x-6">
-                    <a href="/{{ lang }}/producto" class="text-sm font-medium text-gray-600 hover:text-black">{{ c.nav_product }}</a>
-                    <a href="/{{ lang }}/soluciones" class="text-sm font-bold text-black border-b-2 border-black">{{ c.nav_solutions }}</a>
-                    <a href="/{{ lang }}/programa" class="text-sm font-medium text-gray-600 hover:text-black">{{ c.nav_program }}</a>
-                    <a href="/{{ lang }}/equipo" class="text-sm font-medium text-gray-600 hover:text-black">{{ c.nav_about }}</a>
+                    <a href="/{{ lang }}/producto" class="text-sm font-medium text-gray-600 hover:text-accent">{{ c.nav_product }}</a>
+                    <a href="/{{ lang }}/soluciones" class="text-sm font-bold text-accent border-b-2 border-accent">{{ c.nav_solutions }}</a>
+                    <a href="/{{ lang }}/programa" class="text-sm font-medium text-gray-600 hover:text-accent">{{ c.nav_program }}</a>
+                    <a href="/{{ lang }}/equipo" class="text-sm font-medium text-gray-600 hover:text-accent">{{ c.nav_about }}</a>
                     
                     <div class="flex items-center gap-2 bg-gray-100 px-3 py-1 rounded-full border border-gray-200 ml-2">
-                        <a href="/es/soluciones" class="text-xs font-bold {{ 'text-blue-700' if lang == 'es' else 'text-gray-400 hover:text-gray-600' }}">ES</a>
+                        <a href="/es/soluciones" class="text-xs font-bold {{ 'text-accent' if lang == 'es' else 'text-gray-400 hover:text-gray-600' }}">ES</a>
                         <span class="text-gray-300">|</span>
-                        <a href="/ca/soluciones" class="text-xs font-bold {{ 'text-blue-700' if lang == 'ca' else 'text-gray-400 hover:text-gray-600' }}">CA</a>
+                        <a href="/ca/soluciones" class="text-xs font-bold {{ 'text-accent' if lang == 'ca' else 'text-gray-400 hover:text-gray-600' }}">CA</a>
                     </div>
 
                     <a href="https://docs.google.com/forms/d/e/1FAIpQLSfJO-QmNZtDW_80Z0sKrmAr8Q-kHNWfnmzqhpwDCDNnE9kDMA/viewform" target="_blank" class="bg-black text-white hover:bg-gray-800 transition-colors rounded-xl py-2 px-4 text-sm font-bold shadow-sm ml-2">{{ c.nav_contact }}</a>
@@ -81,45 +106,63 @@
         <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-gray-100 shadow-xl">
             <div class="px-4 pt-2 pb-6 space-y-4">
                 <a href="/{{ lang }}/producto" class="block text-base font-medium text-gray-600 py-2">{{ c.nav_product }}</a>
-                <a href="/{{ lang }}/soluciones" class="text-sm font-bold text-black border-b-2 border-black">{{ c.nav_solutions }}</a>
+                <a href="/{{ lang }}/soluciones" class="text-sm font-bold text-accent border-b-2 border-accent">{{ c.nav_solutions }}</a>
                 <a href="/{{ lang }}/programa" class="block text-base font-medium text-gray-600 py-2">{{ c.nav_program }}</a>
                 <a href="/{{ lang }}/equipo" class="block text-base font-medium text-gray-600 py-2">{{ c.nav_about }}</a>
                 
                 <div class="flex justify-center gap-4 py-2 border-y border-gray-100 my-2">
-                    <a href="/es/soluciones" class="text-sm font-bold {{ 'text-blue-700' if lang == 'es' else 'text-gray-400' }}">Español</a>
+                    <a href="/es/soluciones" class="text-sm font-bold {{ 'text-accent' if lang == 'es' else 'text-gray-400' }}">Español</a>
                     <span class="text-gray-300">|</span>
-                    <a href="/ca/soluciones" class="text-sm font-bold {{ 'text-blue-700' if lang == 'ca' else 'text-gray-400' }}">Català</a>
+                    <a href="/ca/soluciones" class="text-sm font-bold {{ 'text-accent' if lang == 'ca' else 'text-gray-400' }}">Català</a>
                 </div>
 
-                <a href="https://docs.google.com/forms/d/e/1FAIpQLSfJO-QmNZtDW_80Z0sKrmAr8Q-kHNWfnmzqhpwDCDNnE9kDMA/viewform" target="_blank" class="block w-full text-center bg-black text-white font-bold py-3 rounded-xl">{{ c.nav_contact }}</a>
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSfJO-QmNZtDW_80Z0sKrmAr8Q-kHNWfnmzqhpwDCDNnE9kDMA/viewform" target="_blank" class="block w-full text-center bg-black text-white hover:bg-gray-800 font-bold py-3 rounded-xl">{{ c.nav_contact }}</a>
             </div>
         </div>
     </nav>
 
-    <main class="relative mt-16 pt-32 pb-20 bg-white z-10 overflow-hidden border-b border-gray-100">
-        <div id="topo-canvas-container" class="absolute inset-0 z-0 pointer-events-none opacity-20">
-            <canvas id="topo-canvas"></canvas>
-        </div>
+    <!-- HEADER: AJUSTE ÓPTICO DE MÁRGENES PARA COMPENSAR LAS SOMBRAS -->
+    <header class="w-full bg-gray-50 border-b border-gray-100 pt-4 pb-6 md:py-16 mt-16">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+                
+                <!-- Tarjeta 1 -->
+                <a href="#inventaria" class="step-card flex flex-col items-center bg-white rounded-3xl border border-gray-200 p-6 shadow-sm hover:shadow-xl hover:border-accent transition-all duration-300 cursor-pointer">
+                    <span class="card-number font-sans mb-6">1</span>
+                    <h2 class="text-xl font-black text-gray-900 tracking-widest uppercase mb-3 text-center">{{ t.step1_title }}</h2>
+                    <p class="text-gray-500 text-center text-sm font-medium leading-relaxed">{{ t.sol1_title }}</p>
+                </a>
 
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-20">
-            <h1 class="text-4xl md:text-6xl font-extrabold text-gray-900 mb-6 tracking-tight">
-                {{ t.hero_title | safe }}
-            </h1>
-            <p class="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed font-medium">
-                {{ t.hero_desc }}
-            </p>
-        </div>
-    </main>
+                <!-- Tarjeta 2 -->
+                <a href="#analiza" class="step-card flex flex-col items-center bg-white rounded-3xl border border-gray-200 p-6 shadow-sm hover:shadow-xl hover:border-accent transition-all duration-300 cursor-pointer">
+                    <span class="card-number font-sans mb-6">2</span>
+                    <h2 class="text-xl font-black text-gray-900 tracking-widest uppercase mb-3 text-center">{{ t.step2_title }}</h2>
+                    <p class="text-gray-500 text-center text-sm font-medium leading-relaxed">{{ t.sol2_title }}</p>
+                </a>
 
-    <section class="w-full flex flex-col md:flex-row border-b border-gray-100 compact-strip overflow-hidden">
-        <div class="md:w-1/2 h-80 md:h-auto bg-gray-50 p-10 flex items-center justify-center">
-            <img src="{{ url_for('static', filename='img/producto.png') }}"  
-                alt="Plataforma SaaS SmartGIS" 
-                class="max-w-full max-h-full object-contain">
+                <!-- Tarjeta 3 -->
+                <a href="#planifica" class="step-card flex flex-col items-center bg-white rounded-3xl border border-gray-200 p-6 shadow-sm hover:shadow-xl hover:border-accent transition-all duration-300 cursor-pointer">
+                    <span class="card-number font-sans mb-6">3</span>
+                    <h2 class="text-xl font-black text-gray-900 tracking-widest uppercase mb-3 text-center">{{ t.step3_title }}</h2>
+                    <p class="text-gray-500 text-center text-sm font-medium leading-relaxed">{{ t.sol3_title }}</p>
+                </a>
+
+            </div>
         </div>
-        <div class="md:w-1/2 bg-white p-8 md:p-20 flex flex-col justify-center">
-            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-gray-200 text-black text-[10px] font-bold uppercase tracking-widest mb-6 w-fit">
-                <i class="fas fa-university text-accent"></i> {{ t.sol1_badge }}
+    </header>
+
+    <!-- PILAR 1: INVENTARÍA -->
+    <section id="inventaria" class="w-full flex flex-col md:flex-row border-b border-gray-100 compact-strip overflow-hidden">
+        <div class="md:w-1/2 h-80 md:h-auto bg-white p-10 flex items-center justify-center">
+            <div class="flex items-center justify-center gap-2 sm:gap-4 h-full w-full">
+                <img src="{{ url_for('static', filename='img/inventari1.jpeg') }}" class="mobile-mockup h-48 md:h-64 object-contain drop-shadow-xl rounded-lg border border-gray-200" alt="Pantalla de inventario 1">
+                <img src="{{ url_for('static', filename='img/inventari2.jpeg') }}" class="mobile-mockup h-48 md:h-64 object-contain drop-shadow-xl rounded-lg border border-gray-200" alt="Pantalla de inventario 2">
+                <img src="{{ url_for('static', filename='img/inventari3.jpeg') }}" class="mobile-mockup h-48 md:h-64 object-contain drop-shadow-xl rounded-lg border border-gray-200" alt="Pantalla de inventario 3">
+            </div>
+        </div>
+        <div class="md:w-1/2 bg-gray-50 p-8 md:p-20 flex flex-col justify-center border-l border-gray-100">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-gray-200 bg-white text-black text-[10px] font-bold uppercase tracking-widest mb-6 w-fit shadow-sm">
+                <i class="fas fa-mobile-alt text-accent"></i> {{ t.sol1_badge }}
             </div>
             <h2 class="text-3xl font-bold text-accent mb-4 tracking-tight">{{ t.sol1_title }}</h2>
             <p class="text-base text-gray-600 mb-8 leading-relaxed">
@@ -127,63 +170,65 @@
             </p>
             <div class="space-y-4">
                 <div class="flex items-start gap-4">
-                    <div class="w-1.5 h-1.5 rounded-full bg-black mt-2"></div>
+                    <div class="w-1.5 h-1.5 rounded-full bg-accent mt-2"></div>
                     <p class="text-sm text-gray-700">{{ t.sol1_feat1 | safe }}</p>
                 </div>
                 <div class="flex items-start gap-4">
-                    <div class="w-1.5 h-1.5 rounded-full bg-black mt-2"></div>
+                    <div class="w-1.5 h-1.5 rounded-full bg-accent mt-2"></div>
                     <p class="text-sm text-gray-700">{{ t.sol1_feat2 | safe }}</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="w-full flex flex-col md:flex-row-reverse border-b border-gray-100 compact-strip overflow-hidden">
-        <div class="md:w-1/2 h-80 md:h-auto bg-gray-50 p-10 flex items-center justify-center">
-            <img src="{{ url_for('static', filename='img/planificador.png') }}" 
-                alt="Generación de planos por IA con SmartGIS" 
-                class="max-w-full max-h-full object-contain filter grayscale-[20%]">
+    <!-- PILAR 2: ANALIZA -->
+    <section id="analiza" class="w-full flex flex-col md:flex-row-reverse border-b border-gray-100 compact-strip overflow-hidden">
+        <div class="md:w-1/2 h-80 md:h-auto bg-white p-10 flex items-center justify-center">
+            <img src="{{ url_for('static', filename='img/producto.png') }}" 
+                alt="Plataforma de análisis SmartGIS" 
+                class="max-w-full max-h-full object-contain">
         </div>
-        <div class="md:w-1/2 bg-white p-8 md:p-20 flex flex-col justify-center">
-            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-gray-200 text-black text-[10px] font-bold uppercase tracking-widest mb-6 w-fit">
-                <i class="fas fa-magic text-accent"></i> {{ t.sol2_badge }}
+        <div class="md:w-1/2 bg-gray-50 p-8 md:p-20 flex flex-col justify-center border-r border-gray-100">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-gray-200 bg-white text-black text-[10px] font-bold uppercase tracking-widest mb-6 w-fit shadow-sm">
+                <i class="fas fa-brain text-accent"></i> {{ t.sol2_badge }}
             </div>
             <h2 class="text-3xl font-bold text-accent mb-4 tracking-tight">{{ t.sol2_title }}</h2>
             <p class="text-base text-gray-600 mb-8 leading-relaxed">
                 {{ t.sol2_desc }}
             </p>
-            <div class="flex flex-wrap gap-x-8 gap-y-2 pt-6 border-t border-gray-100">
+            <div class="flex flex-wrap gap-x-8 gap-y-2 pt-6 border-t border-gray-200">
                 <div class="flex items-center gap-2 text-xs font-bold text-black uppercase tracking-wider">
-                    <i class="fas fa-bolt"></i> {{ t.sol2_feat1 }}
+                    <i class="fas fa-comments text-accent"></i> {{ t.sol2_feat1 }}
                 </div>
                 <div class="flex items-center gap-2 text-xs font-bold text-black uppercase tracking-wider">
-                    <i class="fas fa-layer-group"></i> {{ t.sol2_feat2 }}
+                    <i class="fas fa-walking text-accent"></i> {{ t.sol2_feat2 }}
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="w-full flex flex-col md:flex-row border-b border-gray-100 compact-strip overflow-hidden">
-        <div class="md:w-1/2 h-80 md:h-auto bg-gray-50 p-10 flex items-center justify-center">
-            <img src="{{ url_for('static', filename='img/real_state.png') }}" 
-                alt="Visualización de datos inmobiliarios SmartGIS" 
+    <!-- PILAR 3: PLANIFICA -->
+    <section id="planifica" class="w-full flex flex-col md:flex-row border-b border-gray-100 compact-strip overflow-hidden">
+        <div class="md:w-1/2 h-80 md:h-auto bg-white p-10 flex items-center justify-center">
+            <img src="{{ url_for('static', filename='img/planificador.png') }}" 
+                alt="Generación de planos por IA con SmartGIS" 
                 class="max-w-full max-h-full object-contain">
         </div>
-        <div class="md:w-1/2 bg-white p-8 md:p-20 flex flex-col justify-center">
-            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-gray-200 text-black text-[10px] font-bold uppercase tracking-widest mb-6 w-fit">
-                <i class="fas fa-home text-accent"></i> {{ t.sol3_badge }}
+        <div class="md:w-1/2 bg-gray-50 p-8 md:p-20 flex flex-col justify-center border-l border-gray-100">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-gray-200 bg-white text-black text-[10px] font-bold uppercase tracking-widest mb-6 w-fit shadow-sm">
+                <i class="fas fa-magic text-accent"></i> {{ t.sol3_badge }}
             </div>
             <h2 class="text-3xl font-bold text-accent mb-4 tracking-tight">{{ t.sol3_title }}</h2>
             <p class="text-base text-gray-600 mb-8 leading-relaxed">
                 {{ t.sol3_desc }}
             </p>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
-                <div class="p-5 border border-gray-100 rounded-sm bg-gray-50/50">
-                    <h4 class="font-bold text-gray-900 text-xs uppercase tracking-wider mb-2">{{ t.sol3_box1_title }}</h4>
+                <div class="p-5 border border-gray-200 rounded-lg bg-white shadow-sm">
+                    <h4 class="font-bold text-accent text-xs uppercase tracking-wider mb-2"><i class="fas fa-bolt mr-1"></i> {{ t.sol3_box1_title }}</h4>
                     <p class="text-sm text-gray-500">{{ t.sol3_box1_desc }}</p>
                 </div>
-                <div class="p-5 border border-gray-100 rounded-sm bg-gray-50/50">
-                    <h4 class="font-bold text-gray-900 text-xs uppercase tracking-wider mb-2">{{ t.sol3_box2_title }}</h4>
+                <div class="p-5 border border-gray-200 rounded-lg bg-white shadow-sm">
+                    <h4 class="font-bold text-accent text-xs uppercase tracking-wider mb-2"><i class="fas fa-euro-sign mr-1"></i> {{ t.sol3_box2_title }}</h4>
                     <p class="text-sm text-gray-500">{{ t.sol3_box2_desc }}</p>
                 </div>
             </div>
@@ -191,20 +236,33 @@
         </div>
     </section>
 
+    <!-- BLOQUE MONETIZACIÓN / SUBVENCIONES -->
+    <section class="w-full py-20 subsidy-banner">
+        <div class="max-w-4xl mx-auto px-4 text-center">
+            <h3 class="text-3xl font-bold text-gray-900 mb-6 tracking-tight">{{ t.subsidy_title }}</h3>
+            <p class="text-lg text-gray-600 mb-10 max-w-2xl mx-auto leading-relaxed">
+                {{ t.subsidy_desc }}
+            </p>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSfJO-QmNZtDW_80Z0sKrmAr8Q-kHNWfnmzqhpwDCDNnE9kDMA/viewform" target="_blank" class="inline-block bg-accent text-white hover:bg-blue-800 transition-all transform hover:scale-105 rounded-xl py-4 px-10 font-bold shadow-lg text-lg">
+                {{ t.subsidy_btn }}
+            </a>
+        </div>
+    </section>
+
     <footer class="py-16 bg-white border-t border-gray-100">
         <div class="max-w-7xl mx-auto px-4 text-center">
             <div class="flex justify-center space-x-6 mb-8 text-gray-400">
-                <a href="https://www.linkedin.com/company/109465411" class="hover:text-black transition-colors transform hover:scale-110">
+                <a href="https://www.linkedin.com/company/109465411" target="_blank" class="hover:text-accent transition-colors transform hover:scale-110">
                     <i class="fab fa-linkedin text-2xl"></i>
                 </a>
             </div>
             <p class="text-gray-500 text-sm mb-8 font-medium">© 2026 SmartGIS. {{ c.footer_slogan }}</p>
             <div class="flex flex-wrap justify-center gap-6 text-[11px] text-gray-400 uppercase tracking-widest font-bold">
-                <a href="/aviso-legal" class="hover:text-black transition-colors">{{ c.footer_legal }}</a>
+                <a href="/aviso-legal" class="hover:text-accent transition-colors">{{ c.footer_legal }}</a>
                 <span class="text-gray-200">|</span>
-                <a href="/privacidad" class="hover:text-black transition-colors">{{ c.footer_privacy }}</a>
+                <a href="/privacidad" class="hover:text-accent transition-colors">{{ c.footer_privacy }}</a>
                 <span class="text-gray-200">|</span>
-                <a href="/cookies" class="hover:text-black transition-colors">{{ c.footer_cookies }}</a>
+                <a href="/cookies" class="hover:text-accent transition-colors">{{ c.footer_cookies }}</a>
             </div>
         </div>
     </footer>
@@ -220,63 +278,6 @@
                 menuIcon.classList.toggle('fa-bars', isHidden);
                 menuIcon.classList.toggle('fa-times', !isHidden);
             });
-
-            const canvas = document.getElementById('topo-canvas');
-            const ctx = canvas.getContext('2d');
-            const container = document.getElementById('topo-canvas-container');
-
-            let width, height;
-            let time = 0;
-
-            function resize() {
-                width = canvas.width = container.offsetWidth;
-                height = canvas.height = container.offsetHeight;
-            }
-            resize();
-            window.addEventListener('resize', resize);
-
-            const lines = [];
-            const numLines = 25;
-            const segments = 100;
-
-            for (let i = 0; i < numLines; i++) {
-                lines.push({
-                    yBase: height * (i / numLines),
-                    speed: 0.2 + Math.random() * 0.3,
-                    wavelength: 200 + Math.random() * 100,
-                    amplitude: 15 + Math.random() * 10
-                });
-            }
-
-            function animate() {
-                requestAnimationFrame(animate);
-                ctx.clearRect(0, 0, width, height);
-                ctx.strokeStyle = '#000000';
-                ctx.lineWidth = 0.5;
-
-                time += 0.02;
-
-                lines.forEach((line, index) => {
-                    ctx.beginPath();
-                    for (let x = 0; x <= segments; x++) {
-                        const px = (x / segments) * width;
-                        
-                        const noise = Math.sin((px / line.wavelength) + (time * line.speed) + (index * 0.5));
-                        const variation = Math.cos((px / (line.wavelength * 0.5)) - (time * line.speed * 0.7));
-
-                        const py = line.yBase + (noise * variation * line.amplitude);
-
-                        if (x === 0) {
-                            ctx.moveTo(px, py);
-                        } else {
-                            ctx.lineTo(px, py);
-                        }
-                    }
-                    ctx.stroke();
-                });
-            }
-
-            animate();
         });
     </script>
 </body>
