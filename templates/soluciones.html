@@ -53,19 +53,28 @@
             scroll-margin-top: 5rem;
         }
 
-        /* CLASES PARA LAS TARJETAS LIMPIAS Y ELEGANTES */
-        .card-number {
-            font-size: 6rem;
-            line-height: 1;
-            font-weight: 900;
-            color: transparent;
-            -webkit-text-stroke: 2px #0d3b8a;
-            transition: all 0.3s ease;
+        /* SOLUCIÓN PROFESIONAL: Textos en Vectores (SVG) para evitar roturas en Safari/iOS */
+        .card-number-svg {
+            height: 6rem;
+            width: 100%;
+            overflow: visible; /* Evita recortes al hacer scale */
+            transition: transform 0.3s ease;
         }
         
-        .step-card:hover .card-number {
+        .card-number-svg text {
+            fill: transparent; /* Fondo transparente real */
+            stroke: #0d3b8a; /* Color corporativo */
+            stroke-width: 2px;
+            stroke-linejoin: round; /* Suaviza las esquinas de los números */
+            transition: stroke-width 0.3s ease;
+        }
+        
+        .step-card:hover .card-number-svg {
             transform: scale(1.05) translateY(-5px);
-            -webkit-text-stroke: 3px #0d3b8a;
+        }
+        
+        .step-card:hover .card-number-svg text {
+            stroke-width: 3px; /* El borde se engrosa ligeramente al pasar el ratón */
         }
     </style>
 </head>
@@ -121,28 +130,34 @@
         </div>
     </nav>
 
-    <!-- HEADER: AJUSTE ÓPTICO DE MÁRGENES PARA COMPENSAR LAS SOMBRAS -->
+    <!-- HEADER: TARJETAS CON VECTORES SVG -->
     <header class="w-full bg-gray-50 border-b border-gray-100 pt-4 pb-6 md:py-16 mt-16">
         <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
                 
                 <!-- Tarjeta 1 -->
                 <a href="#inventaria" class="step-card flex flex-col items-center bg-white rounded-3xl border border-gray-200 p-6 shadow-sm hover:shadow-xl hover:border-accent transition-all duration-300 cursor-pointer">
-                    <span class="card-number font-sans mb-6">1</span>
+                    <svg class="card-number-svg mb-4" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                        <text x="50%" y="50%" dominant-baseline="central" text-anchor="middle" font-size="85" font-weight="900" font-family="system-ui, -apple-system, sans-serif">1</text>
+                    </svg>
                     <h2 class="text-xl font-black text-gray-900 tracking-widest uppercase mb-3 text-center">{{ t.step1_title }}</h2>
                     <p class="text-gray-500 text-center text-sm font-medium leading-relaxed">{{ t.sol1_title }}</p>
                 </a>
 
                 <!-- Tarjeta 2 -->
                 <a href="#analiza" class="step-card flex flex-col items-center bg-white rounded-3xl border border-gray-200 p-6 shadow-sm hover:shadow-xl hover:border-accent transition-all duration-300 cursor-pointer">
-                    <span class="card-number font-sans mb-6">2</span>
+                    <svg class="card-number-svg mb-4" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                        <text x="50%" y="50%" dominant-baseline="central" text-anchor="middle" font-size="85" font-weight="900" font-family="system-ui, -apple-system, sans-serif">2</text>
+                    </svg>
                     <h2 class="text-xl font-black text-gray-900 tracking-widest uppercase mb-3 text-center">{{ t.step2_title }}</h2>
                     <p class="text-gray-500 text-center text-sm font-medium leading-relaxed">{{ t.sol2_title }}</p>
                 </a>
 
                 <!-- Tarjeta 3 -->
                 <a href="#planifica" class="step-card flex flex-col items-center bg-white rounded-3xl border border-gray-200 p-6 shadow-sm hover:shadow-xl hover:border-accent transition-all duration-300 cursor-pointer">
-                    <span class="card-number font-sans mb-6">3</span>
+                    <svg class="card-number-svg mb-4" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                        <text x="50%" y="50%" dominant-baseline="central" text-anchor="middle" font-size="85" font-weight="900" font-family="system-ui, -apple-system, sans-serif">3</text>
+                    </svg>
                     <h2 class="text-xl font-black text-gray-900 tracking-widest uppercase mb-3 text-center">{{ t.step3_title }}</h2>
                     <p class="text-gray-500 text-center text-sm font-medium leading-relaxed">{{ t.sol3_title }}</p>
                 </a>
