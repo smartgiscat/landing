@@ -69,15 +69,8 @@ translations = {
             'feat_check1': 'Rutas de tiempo real (peatón, bici, bus)',
             'feat_check2': 'Identificación de zonas sin servicios',
             'feat_check3': 'Análisis demográfico por área de influencia',
-            'card1_title': 'Motor Gemini AI',
-            'card1_desc': 'Utilizamos modelos avanzados de lenguaje para transformar frases naturales en complejas consultas espaciales en nuestras bases de datos.',
-            'card2_title': 'Datos de confianza',
-            'card2_desc': 'Conexión directa con sedes electrónicas de Catastro, INE, OpenStreetMap y capas municipales propias en tiempo real.',
-            'card3_title': 'Informes directivos',
-            'card3_desc': 'Genera automáticamente documentos con mapas, gráficos y conclusiones clave listos para ser presentados en comisiones municipales.'
         },
         'home': {
-            # TEXTOS DE LA HOME ACTUALIZADOS Y DIRECTOS AL GRANO
             'hero_title_1': 'Inventaría, analiza, planifica',
             'hero_desc': 'En un mismo sitio, con inteligencia artificial.',
             'hero_btn_demo': 'Empezar ahora',
@@ -163,12 +156,6 @@ translations = {
             'feat_check1': 'Rutes de temps real (vianant, bici, bus)',
             'feat_check2': 'Identificació de zones sense serveis',
             'feat_check3': 'Anàlisi demogràfica per àrea d\'influència',
-            'card1_title': 'Motor Gemini AI',
-            'card1_desc': 'Utilitzem models avançats de llenguatge per transformar frases naturals en complexes consultes espacials a les nostres bases de dades.',
-            'card2_title': 'Dades de confiança',
-            'card2_desc': 'Connexió directa amb seus electròniques de Cadastre, INE, OpenStreetMap i capes municipals pròpies en temps real.',
-            'card3_title': 'Informes directius',
-            'card3_desc': 'Genera automàticament documents amb mapes, gràfics i conclusions clau llestos per ser presentats en comissions municipals.'
         },
         'home': {
             'hero_title_1': 'Inventaria, analitza, planifica',
