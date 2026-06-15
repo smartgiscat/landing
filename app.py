@@ -4,6 +4,7 @@ from flask_mail import Mail
 from dotenv import load_dotenv
 
 from translations import translations
+from inscripcions import send_inscription_emails
 
 load_dotenv()
 
@@ -35,24 +36,24 @@ def home_default():
     return redirect(url_for('home_lang', lang='es'))
 
 # ==========================================
-# RUTAS MULTIIDIOMA: PRODUCTO
+# RUTAS MULTIIDIOMA: CASOS DE USO
 # ==========================================
 
-@app.route('/<lang>/producto')
-def producto_lang(lang):
+@app.route('/<lang>/casos-uso')
+def casos_uso_lang(lang):
     if lang not in ['es', 'ca']:
         abort(404)
     
-    return render_template('producto.html', 
+    return render_template('casos_uso.html', 
                            c=translations[lang]['common'],
-                           t=translations[lang]['producto'], 
+                           t=translations[lang]['casos_uso'], 
                            lang=lang)
 
-@app.route('/producto')
-def producto_default():
-    return render_template('producto.html', 
+@app.route('/casos-uso')
+def casos_uso_default():
+    return render_template('casos_uso.html', 
                            c=translations['es']['common'],
-                           t=translations['es']['producto'], 
+                           t=translations['es']['casos_uso'], 
                            lang='es')
 
 # ==========================================
@@ -74,6 +75,28 @@ def soluciones_default():
     return render_template('soluciones.html', 
                            c=translations['es']['common'],
                            t=translations['es']['soluciones'], 
+                           lang='es')
+
+# ==========================================
+# RUTAS MULTIIDIOMA: PROGRAMA
+# ==========================================
+
+@app.route('/<lang>/programa')
+def programa_lang(lang):
+    if lang not in ['es', 'ca']:
+        abort(404)
+    
+    return render_template('programa.html', 
+                           c=translations[lang]['common'],
+                           t=translations[lang]['programa'], 
+                           lang=lang)
+
+@app.route('/programa2026')
+@app.route('/programa')
+def programa_default():
+    return render_template('programa.html', 
+                           c=translations['es']['common'],
+                           t=translations['es']['programa'], 
                            lang='es')
 
 # ==========================================
@@ -112,6 +135,65 @@ def privacidad():
 @app.route('/aviso-legal')
 def aviso_legal():
     return render_template('aviso-legal.html')
+
+# ==========================================
+# RUTA DEL FORMULARIO
+# ==========================================
+
+@app.route('/inscribir', methods=['POST'])
+def inscribir():
+    # Detectar el idioma actual para los mensajes Flash
+    lang = request.referrer.split('/')[-2] if request.referrer else 'es'
+    if lang not in ['es', 'ca']: lang = 'es'
+    
+    # SOLUCIÓN 1: Llamamos directamente al diccionario de traducciones
+    texts = translations.get(lang, translations['es'])
+    
+    # Recoger datos del formulario
+    form_data = {
+        'city': request.form.get('city'),
+        'name': request.form.get('name'),
+        'position': request.form.get('position'),
+        'email': request.form.get('email'),
+        'phone': request.form.get('phone'),
+        'observations': request.form.get('observations', '')
+    }
+    
+    # Validación básica backend
+    if not all([form_data['city'], form_data['name'], form_data['email'], form_data['position'], form_data['phone']]):
+        flash("Por favor, rellena todos los campos obligatorios." if lang == 'es' else "Si us plau, omple tots els camps obligatoris.")
+        return redirect(request.referrer)
+
+    # Procesar el envío
+    success = send_inscription_emails(mail, form_data, texts['programa'])
+    
+    # Feedback al usuario
+    if success:
+        if lang == 'es':
+            flash("¡Candidatura enviada con éxito! Revisa tu correo electrónico para ver la confirmación.")
+        else:
+            flash("Candidatura enviada amb èxit! Revisa el teu correu electrònic per veure la confirmació.")
+    else:
+        if lang == 'es':
+            flash("Ha habido un error al enviar tu solicitud. Por favor, inténtalo más tarde o contáctanos directamente.")
+        else:
+            flash("Hi ha hagut un error en enviar la teva sol·licitud. Si us plau, intenta-ho més tard o contacta amb nosaltres.")
+            
+    # SOLUCIÓN 2: Redirigir usando 'programa_lang' en lugar de 'programa_view'
+    return redirect(url_for('programa_lang', lang=lang) + "#inscripcio-form")
+
+# Pon esto temporalmente para ver qué lee realmente Flask
+@app.route('/debug-mail')
+def debug_mail():
+    return {
+        "SERVER": app.config.get('MAIL_SERVER'),
+        "PORT": app.config.get('MAIL_PORT'),
+        "TLS": app.config.get('MAIL_USE_TLS'),
+        "SSL": app.config.get('MAIL_USE_SSL'),
+        "USER": app.config.get('MAIL_USERNAME'),
+        # Mostramos solo el principio de la password para ver si hay espacios raros
+        "PASS_START": str(app.config.get('MAIL_PASSWORD'))[:2] if app.config.get('MAIL_PASSWORD') else None
+    }
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=80)

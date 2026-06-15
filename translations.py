@@ -3,7 +3,7 @@
 translations = {
     'es': {
         'common': {
-            'nav_product': 'Producto',
+            'nav_use_cases': 'Casos de uso',
             'nav_solutions': 'Soluciones',
             'nav_about': 'Quiénes somos',
             'nav_contact': 'Contactar',
@@ -14,7 +14,7 @@ translations = {
         },
         'equipo': {
             'hero_title': 'El equipo detrás de <br><span class="text-accent">la visión</span>',
-            'hero_desc': 'Expertos en IA y analistas geoespaciales unidos para redefinir cómo interactuamos con nuestras ciudades.',
+            'hero_desc': 'Expertos en IA y analistes geoespaciales unidos para redefinir cómo interactuamos con nuestras ciudades.',
             'arnau_name': 'Arnau López',
             'arnau_role': 'Cofundador | IA & Data Architect',
             'arnau_desc': 'Especialista en arquitectura de datos y modelos de inteligencia artificial. Responsable del desarrollo técnico y la infraestructura algorítmica de la plataforma.',
@@ -60,15 +60,8 @@ translations = {
             'subsidy_desc': 'Nuestro ecosistema "Inventaría, analiza, planifica" cumple con los requisitos técnicos para acceder a fondos de digitalización local e innovación tecnológica. Te ayudamos a justificar el proyecto.',
             'subsidy_btn': 'Consultar viabilidad'
         },
-        'producto': {
-            'hero_title': 'El territorio responde a <br><span class="text-accent">tus preguntas</span>',
-            'hero_desc': 'SmartGIS combina datos espaciales con inteligencia artificial conversacional para que cualquier técnico municipal pueda analizar su ciudad en segundos.',
-            'quote': '"No es solo un mapa, es la respuesta que tu ciudad necesita hoy."',
-            'feat_title': 'Optimizado para la ciudad de los 15 minutos',
-            'feat_desc': 'Nuestra herramienta principal permite a los ayuntamientos calcular indicadores de proximidad automáticamente. Evalúa el acceso a educación, salud y servicios esenciales con un solo clic.',
-            'feat_check1': 'Rutas de tiempo real (peatón, bici, bus)',
-            'feat_check2': 'Identificación de zonas sin servicios',
-            'feat_check3': 'Análisis demográfico por área de influencia',
+        'casos_uso': {
+            'message': 'Estamos recogiendo vuestras <span class="text-accent">necesidades</span>',
         },
         'home': {
             'hero_title_1': 'Inventaría, analiza, planifica',
@@ -90,7 +83,7 @@ translations = {
     
     'ca': {
         'common': {
-            'nav_product': 'Producte',
+            'nav_use_cases': 'Casos d\'ús',
             'nav_solutions': 'Solucions',
             'nav_about': 'Qui som',
             'nav_contact': 'Contactar',
@@ -147,15 +140,8 @@ translations = {
             'subsidy_desc': 'El nostre ecosistema "Inventaria, analitza, planifica" compleix amb els requisits tècnics per accedir a fons de digitalització local i innovació tecnològica. T\'ajudem a justificar el projecte.',
             'subsidy_btn': 'Consultar viabilitat'
         },
-        'producto': {
-            'hero_title': 'El territori respon a les <br><span class="text-accent">teves preguntes</span>',
-            'hero_desc': 'SmartGIS combina dades espacials amb intel·ligència artificial conversacional perquè qualsevol tècnic municipal pugui analitzar la seva ciutat en segons.',
-            'quote': '"No és només un mapa, és la resposta que la teva ciutat necessita avui."',
-            'feat_title': 'Optimitzat per a la ciutat dels 15 minuts',
-            'feat_desc': 'La nostra eina principal permet als ajuntaments calcular indicadors de proximitat automàticament. Avalua l\'accés a educació, salut i serveis essencials amb un sol clic.',
-            'feat_check1': 'Rutes de temps real (vianant, bici, bus)',
-            'feat_check2': 'Identificació de zones sense serveis',
-            'feat_check3': 'Anàlisi demogràfica per àrea d\'influència',
+        'casos_uso': {
+            'message': 'Estem recollint les vostres <span class="text-accent">necessitats</span>',
         },
         'home': {
             'hero_title_1': 'Inventaria, analitza, planifica',

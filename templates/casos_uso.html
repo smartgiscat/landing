@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="{{ lang }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartGIS - {{ c.nav_use_cases }}</title>
+    
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="icon" href="{{ url_for('static', filename='img/logo_svg.svg') }}" type="image/svg+xml">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-3RM9W871XT"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-3RM9W871XT');
+    </script>
+
+    <style>
+        /* Color corporativo sólido */
+        .text-accent { color: #0d3b8a; }
+        .bg-accent { background-color: #0d3b8a; }
+        .border-accent { border-color: #0d3b8a; }
+
+        /* Animación para el menú móvil */
+        #mobile-menu:not(.hidden) {
+            animation: slideDown 0.3s ease-out forwards;
+        }
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+
+<body class="antialiased bg-slate-50 flex flex-col min-h-screen">
+
+    <nav class="glass-nav fixed w-full top-0 z-50 bg-white/90 backdrop-blur-md border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <a href="/{{ lang }}/" class="flex items-center gap-2">
+                    <i class="fas fa-globe-americas text-2xl text-black"></i>
+                    <span class="text-xl font-bold tracking-tight">SmartGIS</span>
+                </a>
+
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="text-gray-600 hover:text-black focus:outline-none p-2">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+
+                <div class="hidden md:flex items-center space-x-6">
+                    <a href="/{{ lang }}/casos-uso" class="text-sm font-bold text-black border-b-2 border-black">{{ c.nav_use_cases }}</a>
+                    <a href="/{{ lang }}/soluciones" class="text-sm font-medium text-gray-600 hover:text-black">{{ c.nav_solutions }}</a>
+                    <a href="/{{ lang }}/equipo" class="text-sm font-medium text-gray-600 hover:text-black">{{ c.nav_about }}</a>
+                    
+                    <div class="flex items-center gap-2 bg-gray-100 px-3 py-1 rounded-full border border-gray-200 ml-2">
+                        <a href="/es/casos-uso" class="text-xs font-bold {{ 'text-blue-700' if lang == 'es' else 'text-gray-400 hover:text-gray-600' }}">ES</a>
+                        <span class="text-gray-300">|</span>
+                        <a href="/ca/casos-uso" class="text-xs font-bold {{ 'text-blue-700' if lang == 'ca' else 'text-gray-400 hover:text-gray-600' }}">CA</a>
+                    </div>
+
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSfJO-QmNZtDW_80Z0sKrmAr8Q-kHNWfnmzqhpwDCDNnE9kDMA/viewform" target="_blank" class="bg-black text-white hover:bg-gray-800 transition-colors rounded-xl py-2 px-4 text-sm font-bold shadow-sm ml-2">{{ c.nav_contact }}</a>
+                </div>
+            </div>
+        </div>
+
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-gray-100 shadow-xl">
+            <div class="px-4 pt-2 pb-6 space-y-4">
+                <a href="/{{ lang }}/casos-uso" class="text-sm font-bold text-black border-b-2 border-black">{{ c.nav_use_cases }}</a>
+                <a href="/{{ lang }}/soluciones" class="block text-base font-medium text-gray-600 py-2">{{ c.nav_solutions }}</a>
+                <a href="/{{ lang }}/equipo" class="block text-base font-medium text-gray-600 py-2">{{ c.nav_about }}</a>
+                
+                <div class="flex justify-center gap-4 py-2 border-y border-gray-100 my-2">
+                    <a href="/es/casos-uso" class="text-sm font-bold {{ 'text-blue-700' if lang == 'es' else 'text-gray-400' }}">Español</a>
+                    <span class="text-gray-300">|</span>
+                    <a href="/ca/casos-uso" class="text-sm font-bold {{ 'text-blue-700' if lang == 'ca' else 'text-gray-400' }}">Català</a>
+                </div>
+
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSfJO-QmNZtDW_80Z0sKrmAr8Q-kHNWfnmzqhpwDCDNnE9kDMA/viewform" target="_blank" class="block w-full text-center bg-black text-white font-bold py-3 rounded-xl">{{ c.nav_contact }}</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="relative flex-grow bg-white z-10 overflow-hidden pb-16 pt-28 md:pt-32">
+        <div id="topo-canvas-container" class="absolute inset-0 z-0 pointer-events-none opacity-10">
+            <canvas id="topo-canvas"></canvas>
+        </div>
+
+        <div class="relative z-20 max-w-xl mx-auto px-6 text-center">
+            <h1 class="text-2xl md:text-3xl font-bold text-gray-800 mb-8 tracking-tight leading-snug">
+                {{ t.message | safe }}
+            </h1>
+            
+            <div class="flex justify-center">
+                <div class="p-6 bg-white rounded-2xl shadow-sm border border-gray-100 max-w-xs transition-shadow duration-300 hover:shadow-md">
+                    <img src="{{ url_for('static', filename='img/qr.png') }}" 
+                         alt="Código QR" 
+                         class="w-full h-auto object-contain">
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="py-12 bg-white border-t border-gray-100 mt-auto relative z-20">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <div class="flex justify-center space-x-6 mb-8 text-gray-400">
+                <a href="https://www.linkedin.com/company/109465411" class="hover:text-black transition-colors" target="_blank"><i class="fab fa-linkedin text-xl"></i></a>
+            </div>
+            
+            <p class="text-gray-500 text-sm mb-6">© 2026 SmartGIS. {{ c.footer_slogan }}</p>
+            
+            <div class="flex flex-wrap justify-center gap-4 text-[11px] text-gray-400 uppercase tracking-widest font-semibold">
+                <a href="/aviso-legal" class="hover:text-black transition-colors">{{ c.footer_legal }}</a>
+                <span class="hidden sm:inline">|</span>
+                <a href="/privacidad" class="hover:text-black transition-colors">{{ c.footer_privacy }}</a>
+                <span class="hidden sm:inline">|</span>
+                <a href="/cookies" class="hover:text-black transition-colors">{{ c.footer_cookies }}</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Lógica Menú Móvil
+            const menuBtn = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const menuIcon = menuBtn.querySelector('i');
+
+            menuBtn.addEventListener('click', () => {
+                const isHidden = mobileMenu.classList.toggle('hidden');
+                menuIcon.classList.toggle('fa-bars', isHidden);
+                menuIcon.classList.toggle('fa-times', !isHidden);
+            });
+
+            // SCRIPT PARA CURVAS DE NIVEL
+            const canvas = document.getElementById('topo-canvas');
+            const ctx = canvas.getContext('2d');
+            const container = document.getElementById('topo-canvas-container');
+
+            let width, height;
+            let time = 0;
+
+            function resize() {
+                width = canvas.width = container.offsetWidth;
+                height = canvas.height = container.offsetHeight;
+            }
+            resize();
+            window.addEventListener('resize', resize);
+
+            const lines = [];
+            const numLines = 20; 
+            const segments = 100; 
+
+            for (let i = 0; i < numLines; i++) {
+                lines.push({
+                    yBase: height * (i / numLines),
+                    speed: 0.15 + Math.random() * 0.2, 
+                    wavelength: 250 + Math.random() * 100,
+                    amplitude: 10 + Math.random() * 8
+                });
+            }
+
+            function animate() {
+                requestAnimationFrame(animate);
+                ctx.clearRect(0, 0, width, height);
+                ctx.strokeStyle = '#000000'; 
+                ctx.lineWidth = 0.4; 
+
+                time += 0.015;
+
+                lines.forEach((line, index) => {
+                    ctx.beginPath();
+                    for (let x = 0; x <= segments; x++) {
+                        const px = (x / segments) * width;
+                        const noise = Math.sin((px / line.wavelength) + (time * line.speed) + (index * 0.5));
+                        const variation = Math.cos((px / (line.wavelength * 0.5)) - (time * line.speed * 0.7));
+                        const py = line.yBase + (noise * variation * line.amplitude);
+
+                        if (x === 0) {
+                            ctx.moveTo(px, py);
+                        } else {
+                            ctx.lineTo(px, py);
+                        }
+                    }
+                    ctx.stroke();
+                });
+            }
+
+            animate();
+        });
+    </script>
+</body>
+</html>

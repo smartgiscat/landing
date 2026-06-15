@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="{{ lang }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ t.hero_title_1 }} | SmartGIS</title>
+    
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="icon" href="{{ url_for('static', filename='img/logo_svg.svg') }}" type="image/svg+xml">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.0.6/tsparticles.bundle.min.js"></script>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-3RM9W871XT"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-3RM9W871XT');
+    </script>
+
+    <style>
+        .text-gradient {
+            background: linear-gradient(to right, #000, #666);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .text-gradient-blue {
+            background: linear-gradient(to right, #0d3b8a, #0d3b8a);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .hero-bg {
+            background-image: linear-gradient(rgba(248, 250, 252, 0.92), rgba(248, 250, 252, 0.98)), 
+                              url('https://images.unsplash.com/photo-1550324055-668972688fbd?auto=format&fit=crop&q=80&w=2000');
+            background-size: cover;
+            background-position: center;
+        }
+        .cta-bg {
+            background-image: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.95)), 
+                              url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        #mobile-menu:not(.hidden) {
+            animation: slideDown 0.3s ease-out forwards;
+        }
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .badge-cert {
+            transition: all 0.3s ease;
+            filter: grayscale(100%);
+            opacity: 0.6;
+        }
+        .badge-cert:hover {
+            filter: grayscale(0%);
+            opacity: 1;
+        }
+        .pulse-btn {
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(13, 59, 138, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(13, 59, 138, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(13, 59, 138, 0); }
+        }
+        .text-accent {
+            color: #1470AD;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+
+<body class="antialiased bg-slate-50">
+    <div id="particles-js" class="fixed inset-0 z-0 pointer-events-none"></div>
+
+    <nav class="glass-nav fixed w-full top-0 z-50 bg-white/90 backdrop-blur-md border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <a href="/{{ lang }}/" class="flex items-center gap-2">
+                    <i class="fas fa-globe-americas text-2xl text-black"></i>
+                    <span class="text-xl font-bold tracking-tight">SmartGIS</span>
+                </a>
+
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="text-gray-600 hover:text-black focus:outline-none p-2">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+
+                <div class="hidden md:flex items-center space-x-6">
+                    <a href="/{{ lang }}/producto" class="text-sm font-medium text-gray-600 hover:text-black">{{ c.nav_product }}</a>
+                    <a href="/{{ lang }}/soluciones" class="text-sm font-medium text-gray-600 hover:text-black">{{ c.nav_solutions }}</a>
+                    <a href="/{{ lang }}/programa" class="text-sm font-bold text-black border-b-2 border-black">{{ c.nav_program }}</a>
+                    <a href="/{{ lang }}/equipo" class="text-sm font-medium text-gray-600 hover:text-black">{{ c.nav_about }}</a>
+                    
+                    <div class="flex items-center gap-2 bg-gray-100 px-3 py-1 rounded-full border border-gray-200 ml-2">
+                        <a href="/es/programa" class="text-xs font-bold {{ 'text-blue-700' if lang == 'es' else 'text-gray-400 hover:text-gray-600' }}">ES</a>
+                        <span class="text-gray-300">|</span>
+                        <a href="/ca/programa" class="text-xs font-bold {{ 'text-blue-700' if lang == 'ca' else 'text-gray-400 hover:text-gray-600' }}">CA</a>
+                    </div>
+
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSfJO-QmNZtDW_80Z0sKrmAr8Q-kHNWfnmzqhpwDCDNnE9kDMA/viewform" class="bg-black text-white hover:bg-gray-800 transition-colors rounded-xl py-2 px-4 text-sm font-bold shadow-sm ml-2">{{ c.nav_contact }}</a>
+                </div>
+            </div>
+        </div>
+
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-gray-100 shadow-xl">
+            <div class="px-4 pt-2 pb-6 space-y-4">
+                <a href="/{{ lang }}/producto" class="block text-base font-medium text-gray-600 py-2">{{ c.nav_product }}</a>
+                <a href="/{{ lang }}/soluciones" class="block text-base font-medium text-gray-600 py-2">{{ c.nav_solutions }}</a>
+                <a href="/{{ lang }}/programa" class="block text-base font-bold text-black py-2">{{ c.nav_program }}</a>
+                <a href="/{{ lang }}/equipo" class="block text-base font-medium text-gray-600 py-2">{{ c.nav_about }}</a>
+                
+                <div class="flex justify-center gap-4 py-2 border-y border-gray-100 my-2">
+                    <a href="/es/programa" class="text-sm font-bold {{ 'text-blue-700' if lang == 'es' else 'text-gray-400' }}">Español</a>
+                    <span class="text-gray-300">|</span>
+                    <a href="/ca/programa" class="text-sm font-bold {{ 'text-blue-700' if lang == 'ca' else 'text-gray-400' }}">Català</a>
+                </div>
+
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSfJO-QmNZtDW_80Z0sKrmAr8Q-kHNWfnmzqhpwDCDNnE9kDMA/viewform" class="block w-full text-center bg-black text-white font-bold py-3 rounded-xl">{{ c.nav_contact }}</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="relative pt-40 pb-16 hero-bg border-b border-gray-100">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+            <h1 class="text-4xl md:text-6xl font-extrabold text-gray-900 mb-4 tracking-tight">
+                {{ t.hero_title_1 }} <br><span class="text-gradient-blue">{{ t.hero_title_2 }}</span>
+            </h1>
+            
+            <p class="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed mb-10">
+                {{ t.hero_desc }}
+            </p>
+
+            <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
+                <a href="#per-que" class="bg-[#0d3b8a] text-white font-extrabold py-4 px-8 rounded-xl hover:bg-[#092962] transition-all shadow-lg hover:shadow-[#0d3b8a]/40 text-lg flex items-center gap-2">
+                    {{ t.hero_btn }} <i class="fas fa-arrow-down text-sm"></i>
+                </a>
+                
+                <a href="#inscripcio-form" class="bg-white text-[#0d3b8a] border-2 border-[#0d3b8a] font-extrabold py-4 px-8 rounded-xl hover:bg-gray-50 transition-all shadow-md text-lg flex items-center gap-2">
+                    {{ t.cta_btn_short }} <i class="fas fa-edit text-sm"></i>
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <section id="visor-programa" class="py-16 bg-white relative z-10 border-b border-gray-200">
+            <div class="text-center">
+                <a href="{{ url_for('static', filename='Programa GovTech 2026.pdf') }}" target="_blank" download class="inline-flex items-center gap-2 text-[#0d3b8a] font-bold hover:text-[#092962] hover:underline transition-colors">
+                    <i class="fas fa-file-download"></i> {{t.download_program}}
+                </a>
+            </div>
+    </section>
+
+    <section id="inscripcio-form" class="py-16 bg-slate-50 relative z-10 scroll-mt-20 border-b border-gray-200">
+        <div class="max-w-3xl mx-auto px-4">
+            
+            {% with messages = get_flashed_messages() %}
+              {% if messages %}
+                {% for message in messages %}
+                  <div class="mb-8 p-4 bg-green-100 border border-green-400 text-green-700 rounded-xl text-center font-bold shadow-sm">
+                    {{ message }}
+                  </div>
+                {% endfor %}
+              {% endif %}
+            {% endwith %}
+
+            <div class="text-center mb-10">
+                <h2 class="text-3xl font-extrabold text-gray-900">{{ t.form_title }}</h2>
+                <p class="text-gray-500 mt-2">{{t.form_subtitle}}</p>
+            </div>
+            
+            <form action="{{ url_for('inscribir') }}" method="POST" class="space-y-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="space-y-2">
+                        <label class="text-sm font-bold text-gray-700 ml-1">{{ t.form_city }} *</label>
+                        <input type="text" name="city" required class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-[#0d3b8a] outline-none transition-all bg-white shadow-sm">
+                    </div>
+                    <div class="space-y-2">
+                        <label class="text-sm font-bold text-gray-700 ml-1">{{ t.form_name }} *</label>
+                        <input type="text" name="name" required class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-[#0d3b8a] outline-none transition-all bg-white shadow-sm">
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="space-y-2">
+                        <label class="text-sm font-bold text-gray-700 ml-1">{{ t.form_position }} *</label>
+                        <input type="text" name="position" required class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-[#0d3b8a] outline-none transition-all bg-white shadow-sm">
+                    </div>
+                    <div class="space-y-2">
+                        <label class="text-sm font-bold text-gray-700 ml-1">{{ t.form_phone }} *</label>
+                        <input type="tel" name="phone" required class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-[#0d3b8a] outline-none transition-all bg-white shadow-sm">
+                    </div>
+                </div>
+
+                <div class="space-y-2">
+                    <label class="text-sm font-bold text-gray-700 ml-1">{{ t.form_email }} *</label>
+                    <input type="email" name="email" required class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-[#0d3b8a] outline-none transition-all bg-white shadow-sm">
+                </div>
+
+                <div class="space-y-2">
+                    <label class="text-sm font-bold text-gray-700 ml-1">{{ t.form_obs }}</label>
+                    <textarea name="observations" rows="4" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-[#0d3b8a] outline-none transition-all bg-white shadow-sm resize-none"></textarea>
+                </div>
+
+                <button type="submit" class="w-full bg-[#0d3b8a] text-white font-extrabold py-4 rounded-xl hover:bg-[#092962] transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-1 text-lg flex justify-center items-center gap-2 mt-4">
+                    {{ t.form_submit }} <i class="fas fa-paper-plane text-sm"></i>
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <section id="per-que" class="py-24 bg-white relative z-10 scroll-mt-20 border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900 tracking-tight">{{ t.why_title }}</h2>
+                <p class="text-gray-600 mt-4 max-w-3xl mx-auto text-lg leading-relaxed">
+                    {{ t.why_desc | safe }}
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-slate-50 p-10 rounded-[2rem] border border-gray-100 shadow-sm hover:shadow-xl transition-all flex flex-col items-center text-center">
+                    <div class="w-16 h-16 bg-[#0d3b8a] text-white rounded-2xl flex items-center justify-center mb-6 shadow-md">
+                        <i class="fas fa-microchip text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-gray-900">{{ t.card_1_title }}</h3>
+                    <p class="text-gray-600 leading-relaxed text-sm">
+                        {{ t.card_1_desc | safe }}
+                    </p>
+                </div>
+
+                <div class="bg-white p-10 rounded-[2rem] border-2 border-[#0d3b8a]/20 shadow-lg hover:shadow-xl transition-all relative overflow-hidden flex flex-col items-center text-center">
+                    <div class="w-16 h-16 bg-black text-white rounded-2xl flex items-center justify-center mb-6 shadow-md">
+                        <i class="fas fa-bullseye text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-gray-900">{{ t.card_2_title }}</h3>
+                    <p class="text-gray-600 leading-relaxed text-sm">
+                        {{ t.card_2_desc | safe }}
+                    </p>
+                    <div class="mt-6 p-4 bg-blue-50 rounded-xl w-full border border-blue-100">
+                        <p class="text-xs italic text-gray-600">{{ t.card_2_examples }}</p>
+                    </div>
+                </div>
+
+                <div class="bg-slate-50 p-10 rounded-[2rem] border border-gray-100 shadow-sm hover:shadow-xl transition-all flex flex-col items-center text-center">
+                    <div class="w-16 h-16 bg-[#0d3b8a] text-white rounded-2xl flex items-center justify-center mb-6 shadow-md">
+                        <i class="fas fa-rocket text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-gray-900">{{ t.card_3_title }}</h3>
+                    <p class="text-gray-600 leading-relaxed text-sm">
+                        {{ t.card_3_desc | safe }}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-12 bg-white relative z-10 border-b border-gray-100">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row items-center gap-6 bg-slate-50 border border-gray-200 rounded-2xl p-6 md:p-8 shadow-sm">
+                <div class="flex-shrink-0 w-14 h-14 bg-white border border-gray-200 text-[#0d3b8a] rounded-xl flex items-center justify-center shadow-sm">
+                    <i class="fas fa-map-marker-alt text-2xl"></i>
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold text-gray-900 mb-1">{{ t.limit_title }}</h3>
+                    
+                    <p class="text-gray-600 leading-relaxed">
+                        {{ t.limit_desc | safe }}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 bg-slate-50 relative z-10 border-b border-gray-100">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-extrabold text-gray-900">{{ t.inv_title }}</h2>
+            </div>
+
+            <div class="bg-white rounded-[2rem] p-8 shadow-md border border-gray-100">
+                <ul class="space-y-5 mb-8">
+                    <li class="flex flex-col sm:flex-row justify-between sm:items-center border-b border-gray-100 pb-4">
+                        <div class="flex items-center gap-3">
+                            <i class="fas fa-check text-green-500"></i>
+                            <span class="font-medium text-gray-700">{{ t.inv_item_1 }}</span>
+                        </div>
+                        <span class="font-bold text-gray-500 mt-2 sm:mt-0">5.600 €</span>
+                    </li>
+                    <li class="flex flex-col sm:flex-row justify-between sm:items-center border-b border-gray-100 pb-4">
+                        <div class="flex items-center gap-3">
+                            <i class="fas fa-check text-green-500"></i>
+                            <span class="font-medium text-gray-700">{{ t.inv_item_2 }}</span>
+                        </div>
+                        <span class="font-bold text-gray-500 mt-2 sm:mt-0">5.000 €</span>
+                    </li>
+                    <li class="flex flex-col sm:flex-row justify-between sm:items-center border-b border-gray-100 pb-4">
+                        <div class="flex items-center gap-3">
+                            <i class="fas fa-check text-green-500"></i>
+                            <span class="font-medium text-gray-700">{{ t.inv_item_3 }}</span>
+                        </div>
+                        <span class="font-bold text-gray-500 mt-2 sm:mt-0">700 €</span>
+                    </li>
+                    <li class="flex flex-col sm:flex-row justify-between sm:items-center pb-2">
+                        <div class="flex items-center gap-3">
+                            <i class="fas fa-check text-green-500"></i>
+                            <span class="font-medium text-gray-700">{{ t.inv_item_4 }}</span>
+                        </div>
+                        <span class="font-bold text-gray-500 mt-2 sm:mt-0">1.200 €</span>
+                    </li>
+                </ul>
+
+                <div id="precio-normal" class="hidden bg-slate-50 text-gray-900 rounded-xl p-6 flex flex-col sm:flex-row justify-between items-center gap-4 border border-gray-200">
+                    <span class="text-sm font-bold tracking-widest uppercase text-gray-500">{{ t.inv_total_label }}</span>
+                    <span class="text-3xl font-extrabold">12.500 € + IVA</span>
+                </div>
+
+                <div id="precio-oferta" class="bg-slate-50 text-gray-900 rounded-xl p-6 flex flex-col md:flex-row justify-between items-center gap-6 border border-blue-100 relative overflow-hidden shadow-sm">
+                    <div class="absolute top-0 right-0 bg-blue-100 text-[#0d3b8a] text-[10px] font-bold px-3 py-1 rounded-bl-lg uppercase tracking-wider">
+                        Inscripción Anticipada
+                    </div>
+                    
+                    <div class="flex flex-col w-full md:w-auto text-center md:text-left mt-2 md:mt-0">
+                        <span class="text-sm font-bold tracking-widest uppercase text-gray-500">{{ t.inv_total_label }}</span>
+                        <div class="flex flex-col sm:flex-row items-center gap-3 mt-1">
+                            <span class="text-xl line-through text-gray-400 font-medium">12.500 €</span>
+                            <span class="text-3xl font-extrabold text-[#0d3b8a]">11.500 € <span class="text-lg font-bold text-gray-500">+ IVA</span></span>
+                        </div>
+                    </div>
+
+                    <div id="countdown-container" class="flex flex-col items-center bg-white p-3 rounded-xl border border-gray-100 w-full md:w-auto z-10 shadow-sm">
+                        <span class="text-[10px] font-semibold text-gray-500 uppercase tracking-widest mb-2">Condiciones válidas durante:</span>
+                        <div class="flex gap-2 text-center">
+                            <div class="flex flex-col">
+                                <span id="days" class="text-lg font-bold text-gray-700 bg-slate-50 rounded px-2 py-1 min-w-[2.5rem]">-</span>
+                                <span class="text-[9px] text-gray-400 mt-1 uppercase font-semibold">Días</span>
+                            </div>
+                            <span class="text-lg font-medium text-gray-300 mt-1">:</span>
+                            <div class="flex flex-col">
+                                <span id="hours" class="text-lg font-bold text-gray-700 bg-slate-50 rounded px-2 py-1 min-w-[2.5rem]">-</span>
+                                <span class="text-[9px] text-gray-400 mt-1 uppercase font-semibold">Hrs</span>
+                            </div>
+                            <span class="text-lg font-medium text-gray-300 mt-1">:</span>
+                            <div class="flex flex-col">
+                                <span id="minutes" class="text-lg font-bold text-gray-700 bg-slate-50 rounded px-2 py-1 min-w-[2.5rem]">-</span>
+                                <span class="text-[9px] text-gray-400 mt-1 uppercase font-semibold">Min</span>
+                            </div>
+                            <span class="text-lg font-medium text-gray-300 mt-1">:</span>
+                            <div class="flex flex-col">
+                                <span id="seconds" class="text-lg font-bold text-[#0d3b8a] bg-blue-50 rounded px-2 py-1 min-w-[2.5rem]">-</span>
+                                <span class="text-[9px] text-[#0d3b8a] mt-1 uppercase font-semibold">Seg</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+        </div>
+    </section>
+
+    <section class="py-16 bg-white border-t border-gray-200 relative z-10">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <p class="text-sm font-semibold text-gray-500 uppercase tracking-widest mb-10">
+                {{ t.normativa_title }}
+            </p>
+            
+            <div class="flex flex-wrap justify-center gap-10 items-center">
+                <div class="text-center badge-cert">
+                    <i class="fas fa-shield-alt text-3xl mb-2"></i>
+                    <p class="text-xs font-bold uppercase">{{ t.normativa_ens }}</p>
+                </div>
+                <div class="text-center badge-cert">
+                    <i class="fas fa-certificate text-3xl mb-2"></i>
+                    <p class="text-xs font-bold uppercase">ISO 9001 · 14001</p>
+                </div>
+                <div class="text-center badge-cert">
+                    <i class="fas fa-lock text-3xl mb-2"></i>
+                    <p class="text-xs font-bold uppercase">ISO/IEC 27001</p>
+                </div>
+                <div class="text-center badge-cert">
+                    <i class="fas fa-bolt text-3xl mb-2"></i>
+                    <p class="text-xs font-bold uppercase">ISO 50001</p>
+                </div>
+                <div class="text-center badge-cert">
+                    <i class="fas fa-globe text-3xl mb-2"></i>
+                    <p class="text-xs font-bold uppercase">ODS 3, 9, 10, 11, 17</p>
+                </div>
+                <div class="text-center badge-cert border-l pl-10 border-gray-300 ml-2">
+                    <p class="text-[10px] text-gray-500 mb-1 font-bold">PARTNER</p>
+                    <p class="text-xl font-extrabold tracking-tight">arsys</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-12 bg-slate-50 border-t border-gray-100 relative z-10">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <div class="flex justify-center space-x-6 mb-8 text-gray-400">
+                <a href="https://www.linkedin.com/company/smartgises" class="hover:text-black transition-colors" target="_blank"><i class="fab fa-linkedin text-xl"></i></a>
+                <a href="mailto:info@smartgis.es" class="hover:text-black transition-colors"><i class="fas fa-envelope text-xl"></i></a>
+            </div>
+            
+            <p class="text-gray-500 text-sm mb-6">© 2026 SmartGIS. {{ c.footer_slogan }}</p>
+            
+            <div class="flex flex-wrap justify-center gap-4 text-[11px] text-gray-400 uppercase tracking-widest font-semibold">
+                <a href="/aviso-legal" class="hover:text-black transition-colors">{{ c.footer_legal }}</a>
+                <span class="hidden sm:inline">|</span>
+                <a href="/privacidad" class="hover:text-black transition-colors">{{ c.footer_privacy }}</a>
+                <span class="hidden sm:inline">|</span>
+                <a href="/cookies" class="hover:text-black transition-colors">{{ c.footer_cookies }}</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Menú móvil
+            const menuBtn = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const menuIcon = menuBtn.querySelector('i');
+
+            menuBtn.addEventListener('click', () => {
+                const isHidden = mobileMenu.classList.toggle('hidden');
+                menuIcon.classList.toggle('fa-bars', isHidden);
+                menuIcon.classList.toggle('fa-times', !isHidden);
+            });
+
+            // tsParticles
+            if (window.tsParticles) {
+                tsParticles.load("particles-js", {
+                    particles: {
+                        number: { value: 30, density: { enable: true, value_area: 800 } },
+                        color: { value: "#000000" },
+                        shape: { type: "circle" },
+                        opacity: { value: 0.05 },
+                        size: { value: 2, random: true },
+                        line_linked: {
+                            enable: true,
+                            distance: 150,
+                            color: "#000000",
+                            opacity: 0.05,
+                            width: 1
+                        },
+                        move: { enable: true, speed: 0.5, out_mode: "out" }
+                    },
+                    retina_detect: true
+                });
+            }
+
+            // Lógica del Contador con Fecha Límite Fija
+            const initCountdown = () => {
+                // FECHA DE FIN DE OFERTA: 24 de mayo de 2026 a las 15:00h (hora España)
+                const targetDate = new Date('2026-04-24T15:00:00+02:00');
+                let timerId;
+
+                function update() {
+                    const currentTime = new Date();
+                    const difference = targetDate - currentTime;
+                    
+                    const sectionOferta = document.getElementById('precio-oferta');
+                    const sectionNormal = document.getElementById('precio-normal');
+
+                    if (difference <= 0) {
+                        // El tiempo se ha acabado: ocultamos la oferta y mostramos el precio normal
+                        if (sectionOferta) sectionOferta.classList.add('hidden');
+                        if (sectionNormal) sectionNormal.classList.remove('hidden');
+                        
+                        // Detenemos el contador para no consumir recursos
+                        if (timerId) clearInterval(timerId);
+                        return;
+                    }
+
+                    // Asegurarnos de que el modo oferta es el que se ve mientras haya tiempo
+                    if (sectionOferta) sectionOferta.classList.remove('hidden');
+                    if (sectionNormal) sectionNormal.classList.add('hidden');
+
+                    const d = Math.floor(difference / (1000 * 60 * 60 * 24));
+                    const h = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                    const m = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+                    const s = Math.floor((difference % (1000 * 60)) / 1000);
+
+                    const elDays = document.getElementById('days');
+                    const elHours = document.getElementById('hours');
+                    const elMinutes = document.getElementById('minutes');
+                    const elSeconds = document.getElementById('seconds');
+
+                    if(elDays) elDays.innerText = d.toString().padStart(2, '0');
+                    if(elHours) elHours.innerText = h.toString().padStart(2, '0');
+                    if(elMinutes) elMinutes.innerText = m.toString().padStart(2, '0');
+                    if(elSeconds) elSeconds.innerText = s.toString().padStart(2, '0');
+                }
+
+                // Ejecutamos una primera vez de inmediato para no ver un "flash" incorrecto
+                update();
+                
+                // Solo iniciamos el intervalo si aún no hemos llegado a la fecha límite
+                if (targetDate - new Date() > 0) {
+                    timerId = setInterval(update, 1000);
+                }
+            };
+
+            // Iniciar el contador
+            initCountdown();
+        });
+    </script>
+</body>
+</html>
